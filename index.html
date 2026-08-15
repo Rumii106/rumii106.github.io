@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mehrun Nisa — Frontend Developer</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  :root {
+    --paper: #f3f5f0;
+    --paper-card: #ffffff;
+    --ink: #1b241f;
+    --ink-dim: #565f57;
+    --line: #dcdfd6;
+    --amber: #c9852b;
+    --amber-soft: #f3e2c4;
+    --navy: #2e4034;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: linear-gradient(155deg, #f9f7f1 0%, #eef1e7 45%, #f3ecdd 100%);
+    background-attachment: fixed;
+    color: var(--ink);
+    font-family: 'Space Grotesk', sans-serif;
+    line-height: 1.5;
+  }
+
+  section, header, footer { max-width: 840px; margin: 0 auto; padding: 0 30px; }
+
+  nav { border-bottom: 1px solid var(--line); background: rgba(249,247,241,0.85); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 10; }
+  .nav-inner {
+    max-width: 840px; margin: 0 auto; padding: 22px 30px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .logo {
+    font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 15px;
+    color: var(--ink); text-decoration: none;
+    display: inline-flex; align-items: center; gap: 9px;
+  }
+  .logo-badge {
+    width: 32px; height: 32px; border-radius: 8px;
+    background: var(--navy); color: #f3e2c4;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 13px;
+    letter-spacing: -0.5px;
+  }
+  .nav-links { display: flex; gap: 30px; }
+  .nav-links a { color: var(--ink-dim); text-decoration: none; font-size: 14.5px; font-weight: 500; }
+  .nav-links a:hover { color: var(--amber); }
+
+  .hero {
+    padding-top: 70px; padding-bottom: 60px;
+    display: grid; grid-template-columns: 1.1fr 1fr; gap: 50px; align-items: center;
+  }
+  .hero-copy .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'IBM Plex Mono', monospace; font-size: 13.5px; color: var(--amber);
+    margin-bottom: 18px; font-weight: 500;
+    background: var(--amber-soft); padding: 6px 14px 6px 10px; border-radius: 20px;
+  }
+  .eyebrow svg, .kicker svg { flex-shrink: 0; }
+  h1 {
+    font-size: 56px; font-weight: 700; line-height: 1.1; margin-bottom: 20px;
+    letter-spacing: -1px;
+  }
+  .hero-desc { font-size: 16.5px; color: var(--ink-dim); margin-bottom: 30px; max-width: 420px; }
+
+  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn {
+    font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 14.5px;
+    padding: 13px 24px; border-radius: 6px; text-decoration: none;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .btn-primary { background: var(--navy); color: #fdfdfb; }
+  .btn-primary:hover { background: #22301f; }
+  .btn-ghost { background: transparent; border: 1.5px solid var(--ink); color: var(--ink); }
+  .btn-ghost:hover { border-color: var(--amber); color: var(--amber); }
+
+  .editor {
+    background: #1e2620; border-radius: 10px; overflow: hidden;
+    box-shadow: 0 20px 45px rgba(30,38,32,0.18);
+    transform: rotate(1.2deg);
+  }
+  .editor-tabs {
+    display: flex; background: #171e19; padding: 0 6px;
+  }
+  .tab {
+    font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #7c8a7d;
+    padding: 11px 16px; border-right: 1px solid #263025;
+  }
+  .tab.active { color: #f3f5f0; background: #1e2620; border-top: 2px solid var(--amber); }
+  .editor-body {
+    padding: 22px 20px; font-family: 'IBM Plex Mono', monospace; font-size: 13px;
+    line-height: 1.85; color: #cdd6cd;
+  }
+  .editor-body .ln { color: #4d594e; display: inline-block; width: 20px; user-select: none; }
+  .tag { color: #e6a15a; }
+  .attr { color: #8fc9a0; }
+  .str { color: #d8b568; }
+  .txt { color: #cdd6cd; }
+  .cmt { color: #56604f; font-style: italic; }
+
+  .section-pad { padding-top: 60px; padding-bottom: 8px; border-top: 1px solid var(--line); }
+  .kicker {
+    display: flex; align-items: center; gap: 8px;
+    font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: var(--amber);
+    margin-bottom: 10px; font-weight: 600; letter-spacing: 0.3px;
+  }
+  h2 { font-size: 26px; font-weight: 700; margin-bottom: 26px; }
+
+  .about-text p { font-size: 16px; color: var(--ink-dim); margin-bottom: 14px; max-width: 600px; }
+  .about-text strong { color: var(--ink); }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 22px; }
+  .skill-tag {
+    font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: var(--navy);
+    background: var(--amber-soft); padding: 6px 13px; border-radius: 5px;
+  }
+
+  .file-list { border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+  .file-row {
+    display: flex; align-items: center; gap: 14px;
+    padding: 18px 22px; background: var(--paper-card);
+    border-bottom: 1px solid var(--line);
+  }
+  .file-row:last-child { border-bottom: none; }
+  .file-ext {
+    font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; font-weight: 600;
+    color: var(--navy); background: var(--amber-soft);
+    width: 42px; height: 28px; display: flex; align-items: center; justify-content: center;
+    border-radius: 5px; flex-shrink: 0;
+  }
+  .file-info h3 { font-size: 16px; font-weight: 600; margin-bottom: 3px; }
+  .file-info p { font-size: 14px; color: var(--ink-dim); }
+
+  .services-list { display: flex; flex-direction: column; }
+  .service-item {
+    display: grid; grid-template-columns: 90px 1fr; gap: 20px;
+    padding: 20px 0; border-bottom: 1px solid var(--line);
+  }
+  .service-item:last-child { border-bottom: none; }
+  .service-tag {
+    font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; font-weight: 600;
+    color: var(--navy); background: var(--amber-soft);
+    padding: 5px 11px; border-radius: 5px; width: fit-content; height: fit-content;
+  }
+  .service-item h4 { font-size: 17px; font-weight: 600; margin-bottom: 5px; }
+  .service-item p { font-size: 14.5px; color: var(--ink-dim); }
+
+  .contact-box {
+    margin-top: 64px; margin-bottom: 70px;
+    background: var(--navy); border-radius: 14px;
+    padding: 46px 40px; text-align: left;
+    display: flex; justify-content: space-between; align-items: center; gap: 30px; flex-wrap: wrap;
+  }
+  .contact-box h2 { color: #fdfdfb; margin-bottom: 8px; }
+  .contact-box p {
+    font-family: 'IBM Plex Mono', monospace; color: #a8b8a3; font-size: 14px;
+  }
+  .contact-box p span { color: var(--amber); }
+  .contact-box .btn-primary { background: var(--amber); color: #1b241f; }
+  .contact-box .btn-primary:hover { background: #dba050; }
+
+  footer {
+    text-align: center; padding: 26px; color: var(--ink-dim);
+    font-family: 'IBM Plex Mono', monospace; font-size: 12.5px;
+    border-top: 1px solid var(--line);
+  }
+
+  @media (max-width: 720px) {
+    .hero { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    h1 { font-size: 32px; }
+    .editor { transform: none; }
+    .contact-box { text-align: center; justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo"><span class="logo-badge">MN</span>Mehrun Nisa</a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-copy">
+    <div class="eyebrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg> Available for freelance work</div>
+    <h1>I turn ideas into websites that actually work.</h1>
+    <p class="hero-desc">Hi, I'm Mehrun Nisa — a student and self-taught frontend developer.
+    I build clean, responsive sites with HTML and CSS.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn btn-primary">Let's work together</a>
+      <a href="#projects" class="btn btn-ghost">View my work</a>
+    </div>
+  </div>
+
+  <div class="editor">
+    <div class="editor-tabs">
+      <div class="tab active">about.html</div>
+      <div class="tab">style.css</div>
+    </div>
+    <div class="editor-body">
+      <div><span class="ln">1</span><span class="cmt">&lt;!-- who I am --&gt;</span></div>
+      <div><span class="ln">2</span><span class="tag">&lt;h1&gt;</span><span class="txt">Mehrun Nisa</span><span class="tag">&lt;/h1&gt;</span></div>
+      <div><span class="ln">3</span><span class="tag">&lt;p</span> <span class="attr">role</span>=<span class="str">"dev"</span><span class="tag">&gt;</span></div>
+      <div><span class="ln">4</span>&nbsp;&nbsp;Frontend Developer</div>
+      <div><span class="ln">5</span><span class="tag">&lt;/p&gt;</span></div>
+      <div><span class="ln">6</span><span class="tag">&lt;ul</span> <span class="attr">class</span>=<span class="str">"skills"</span><span class="tag">&gt;</span></div>
+      <div><span class="ln">7</span>&nbsp;&nbsp;<span class="tag">&lt;li&gt;</span>HTML<span class="tag">&lt;/li&gt;</span></div>
+      <div><span class="ln">8</span>&nbsp;&nbsp;<span class="tag">&lt;li&gt;</span>CSS<span class="tag">&lt;/li&gt;</span></div>
+      <div><span class="ln">9</span><span class="tag">&lt;/ul&gt;</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section-pad" id="about">
+  <div class="kicker"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>About</div>
+  <h2>A bit about me</h2>
+  <div class="about-text">
+    <p>I'm a student learning frontend development, focused on <strong>HTML and CSS</strong>.
+    I enjoy turning simple ideas into clean, working websites.</p>
+    <p>I'm currently taking on small freelance projects — landing pages, portfolios,
+    and simple business sites — to build real experience with real clients.</p>
+    <div class="skill-tags">
+      <span class="skill-tag">HTML5</span>
+      <span class="skill-tag">CSS3</span>
+      <span class="skill-tag">Responsive Design</span>
+      <span class="skill-tag">Flexbox</span>
+      <span class="skill-tag">Grid</span>
+      <span class="skill-tag">Git</span>
+    </div>
+  </div>
+</section>
+
+<section class="section-pad" id="projects">
+  <div class="kicker"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V7z"/></svg>Projects</div>
+  <h2>Recent work</h2>
+  <div class="file-list">
+    <div class="file-row">
+      <div class="file-ext">.html</div>
+      <div class="file-info">
+        <h3>Landing Page</h3>
+        <p>A simple, responsive landing page with a hero section and pricing.</p>
+      </div>
+    </div>
+    <div class="file-row">
+      <div class="file-ext">.css</div>
+      <div class="file-info">
+        <h3>Portfolio Template</h3>
+        <p>A one-page portfolio layout for showcasing personal work.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-pad" id="services">
+  <div class="kicker"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>Services</div>
+  <h2>What I can help with</h2>
+  <div class="services-list">
+    <div class="service-item">
+      <div class="service-tag">landing</div>
+      <div>
+        <h4>Landing Pages</h4>
+        <p>Single-page sites for products or personal brands — fast and mobile-friendly.</p>
+      </div>
+    </div>
+    <div class="service-item">
+      <div class="service-tag">portfolio</div>
+      <div>
+        <h4>Portfolio Sites</h4>
+        <p>Clean, custom-built portfolios that make your work stand out.</p>
+      </div>
+    </div>
+    <div class="service-item">
+      <div class="service-tag">business</div>
+      <div>
+        <h4>Small Business Sites</h4>
+        <p>Multi-page sites with clear navigation and contact forms.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="contact-box">
+    <div>
+      <h2>Got a project in mind?</h2>
+      <p><span>$</span> ready_to_start --email rumann1813@gmail.com</p>
+    </div>
+    <a href="mailto:rumann1813@gmail.com" class="btn btn-primary">Email Me</a>
+  </div>
+</section>
+
+<footer>
+  © 2026 Mehrun Nisa — built with HTML &amp; CSS
+</footer>
+
+</body>
+</html>
