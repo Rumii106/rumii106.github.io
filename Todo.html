@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My To-Do List</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    /* Peaceful sky-like gradient — soft blue to lavender to soft pink, very gentle */
+    background: linear-gradient(160deg, #dbe9f4 0%, #e6e6f7 40%, #f3e8f0 75%, #f7ecec 100%);
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+    color: #2c2c34;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 60px 20px;
+  }
+
+  .app {
+    background: #fdfdfb;
+    width: 100%;
+    max-width: 440px;
+    border-radius: 18px;
+    padding: 36px;
+    box-shadow: 0 20px 45px rgba(60,20,90,0.10);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.05);
+  }
+
+  /* Thin purple-pink-orange accent line at top — the theme colour comes back here */
+  .app::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, #7b5cff, #ff6ec4, #ffb84d);
+  }
+
+  .header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 8px;
+    margin-bottom: 4px;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    color: #2c2c34;
+  }
+  h1 span { color: #ff6ec4; }
+
+  .count-badge {
+    background: linear-gradient(135deg, #7b5cff, #ff6ec4);
+    color: #fff;
+    font-weight: 600;
+    font-size: 12.5px;
+    padding: 7px 14px;
+    border-radius: 20px;
+    white-space: nowrap;
+    letter-spacing: 0.3px;
+  }
+
+  .subtitle {
+    color: #8a8a94;
+    font-size: 13.5px;
+    margin-bottom: 22px;
+    font-weight: 500;
+  }
+
+  .progress-track {
+    height: 6px;
+    background: #edece7;
+    border-radius: 10px;
+    margin-bottom: 26px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #7b5cff, #ff6ec4);
+    border-radius: 10px;
+    transition: width 0.35s ease;
+  }
+
+  .input-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+
+  #taskInput {
+    flex: 1;
+    padding: 13px 16px;
+    border: 1.5px solid #e4e2db;
+    border-radius: 10px;
+    font-size: 14.5px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    outline: none;
+    transition: border-color 0.2s;
+    background: #faf9f6;
+  }
+  #taskInput:focus { border-color: #b08d57; background: #fff; }
+
+  #addBtn {
+    background: linear-gradient(135deg, #7b5cff, #ff6ec4);
+    color: #fff;
+    border: none;
+    padding: 0 22px;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 20px;
+    transition: transform 0.15s;
+    box-shadow: 0 6px 16px rgba(123,92,255,0.3);
+  }
+  #addBtn:hover { transform: translateY(-1px) scale(1.02); }
+  #addBtn:active { transform: scale(0.96); }
+
+  ul { list-style: none; }
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 6px;
+    border-bottom: 1px solid #f0efe9;
+    animation: fadeIn 0.25s ease;
+  }
+  li:last-child { border-bottom: none; }
+
+  @keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(-4px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  .dot {
+    width: 9px; height: 9px; border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .checkbox {
+    width: 21px;
+    height: 21px;
+    border: 2px solid #c9c5b8;
+    border-radius: 5px;
+    flex-shrink: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: #fff;
+    font-weight: 800;
+    transition: all 0.18s ease;
+  }
+  .checkbox.checked {
+    background: linear-gradient(135deg, #7b5cff, #ff6ec4);
+    border-color: #ff6ec4;
+  }
+
+  .task-text {
+    flex: 1;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    word-break: break-word;
+    color: #2c2c34;
+  }
+  .task-text.done {
+    text-decoration: line-through;
+    color: #b6b3a8;
+  }
+
+  .delete-btn {
+    background: none;
+    border: none;
+    color: #d4d1c6;
+    font-size: 17px;
+    cursor: pointer;
+    line-height: 1;
+    padding: 4px;
+    font-weight: 700;
+    transition: color 0.15s;
+  }
+  .delete-btn:hover { color: #b03a3a; }
+
+  .empty-msg {
+    text-align: center;
+    color: #b3b0a4;
+    font-size: 13.5px;
+    padding: 30px 0 6px;
+    font-weight: 500;
+  }
+  .empty-msg .icon {
+    font-size: 32px;
+    display: block;
+    margin-bottom: 10px;
+    opacity: 0.6;
+  }
+
+  .celebrate {
+    text-align: center;
+    padding: 8px 0 4px;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 14.5px;
+    color: #ff6ec4;
+    display: none;
+  }
+</style>
+</head>
+<body>
+
+<div class="app">
+  <div class="header-row">
+    <h1>My Tasks<span>.</span></h1>
+    <div class="count-badge" id="countBadge">0 left</div>
+  </div>
+  <p class="subtitle">Stay organized, stay ahead.</p>
+
+  <div class="progress-track">
+    <div class="progress-fill" id="progressFill"></div>
+  </div>
+
+  <div class="input-row">
+    <input type="text" id="taskInput" placeholder="Add a new task...">
+    <button id="addBtn">+</button>
+  </div>
+
+  <ul id="taskList"></ul>
+  <p class="empty-msg" id="emptyMsg"><span class="icon">🎉</span>No tasks yet — add your first one!</p>
+  <p class="celebrate" id="celebrateMsg">🎊 Amazing! Everything's done!</p>
+</div>
+
+<script>
+  /* ============================================
+     JAVASCRIPT BASICS — read the comments to learn!
+     ============================================ */
+
+  // Step 1: "Grab" the HTML elements we need to work with.
+  // document.getElementById() finds an element by its id="..." attribute.
+  const taskInput   = document.getElementById('taskInput');   // the text box
+  const addBtn      = document.getElementById('addBtn');      // the "+" button
+  const taskList    = document.getElementById('taskList');    // the <ul> list
+  const emptyMsg    = document.getElementById('emptyMsg');    // "no tasks" message
+  const countBadge  = document.getElementById('countBadge');  // "X left" badge
+  const progressFill= document.getElementById('progressFill');// progress bar
+  const celebrateMsg= document.getElementById('celebrateMsg');// "all done" message
+
+  // Step 2: A function that recalculates counts/progress every time something changes.
+  // We call this after every add / check / delete action.
+  function updateStats() {
+    const items = taskList.querySelectorAll('li');           // all task rows
+    const total = items.length;                               // how many tasks total
+    const done  = taskList.querySelectorAll('.task-text.done').length; // how many are checked
+    const left  = total - done;                                // how many remain
+
+    emptyMsg.style.display     = total === 0 ? 'block' : 'none';
+    celebrateMsg.style.display = (total > 0 && left === 0) ? 'block' : 'none';
+    countBadge.textContent     = left + ' left';
+
+    // Progress bar width = percentage of tasks completed
+    progressFill.style.width = total === 0 ? '0%' : (done / total * 100) + '%';
+  }
+
+  // Colours the little dot will cycle through for each new task
+  const dotColors = ['#7b5cff', '#ff6ec4', '#ffb84d', '#35d0a0'];
+  let colorIndex = 0;
+
+  // Step 3: Function that runs when user wants to add a task.
+  function addTask() {
+    const text = taskInput.value.trim(); // .trim() removes extra spaces
+    if (text === '') return;             // don't add empty tasks
+
+    // Create a new <li> element from scratch
+    const li = document.createElement('li');
+
+    // Create the small coloured dot before each task
+    const dot = document.createElement('div');
+    dot.className = 'dot';
+    dot.style.background = dotColors[colorIndex % dotColors.length];
+    colorIndex++; // move to next colour for the next task added
+
+    // Create the checkbox div
+    const checkbox = document.createElement('div');
+    checkbox.className = 'checkbox';
+    checkbox.innerHTML = '&#10003;'; // checkmark symbol (hidden until checked, shown via color)
+
+    // Create the text span
+    const span = document.createElement('span');
+    span.className = 'task-text';
+    span.textContent = text; // safely inserts text (prevents HTML injection)
+
+    // Create the delete (✕) button
+    const deleteBtn = document.createElement('button');
+    deleteBtn.className = 'delete-btn';
+    deleteBtn.innerHTML = '&#10005;';
+
+    // Step 4: Event listeners — code that runs "when this happens"
+    // When checkbox is clicked: toggle the "checked"/"done" classes, then update stats
+    checkbox.addEventListener('click', function() {
+      checkbox.classList.toggle('checked');
+      span.classList.toggle('done');
+      updateStats();
+    });
+
+    // When ✕ is clicked: remove this task from the page
+    deleteBtn.addEventListener('click', function() {
+      li.remove();
+      updateStats();
+    });
+
+    // Step 5: Put the pieces together and add to the page
+    li.appendChild(dot);
+    li.appendChild(checkbox);
+    li.appendChild(span);
+    li.appendChild(deleteBtn);
+    taskList.appendChild(li);
+
+    taskInput.value = ''; // clear the input box
+    updateStats();
+  }
+
+  // Step 6: Connect the button click to our addTask function
+  addBtn.addEventListener('click', addTask);
+
+  // Bonus: also allow pressing "Enter" key to add a task
+  taskInput.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') addTask();
+  });
+
+  // Run once at the start so the empty message shows correctly
+  updateStats();
+</script>
+
+</body>
+</html>
