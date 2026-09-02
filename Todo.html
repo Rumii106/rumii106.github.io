@@ -9,6 +9,11 @@
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+  }
+
   body {
     /* Peaceful sky-like gradient — soft blue to lavender to soft pink, very gentle */
     background: linear-gradient(160deg, #dbe9f4 0%, #e6e6f7 40%, #f3e8f0 75%, #f7ecec 100%);
@@ -48,6 +53,8 @@
     align-items: flex-start;
     margin-top: 8px;
     margin-bottom: 4px;
+    gap: 10px;
+    flex-wrap: wrap;
   }
 
   h1 {
@@ -68,6 +75,7 @@
     border-radius: 20px;
     white-space: nowrap;
     letter-spacing: 0.3px;
+    flex-shrink: 0;
   }
 
   .subtitle {
@@ -100,6 +108,7 @@
 
   #taskInput {
     flex: 1;
+    min-width: 0;
     padding: 13px 16px;
     border: 1.5px solid #e4e2db;
     border-radius: 10px;
@@ -123,6 +132,7 @@
     font-size: 20px;
     transition: transform 0.15s;
     box-shadow: 0 6px 16px rgba(123,92,255,0.3);
+    flex-shrink: 0;
   }
   #addBtn:hover { transform: translateY(-1px) scale(1.02); }
   #addBtn:active { transform: scale(0.96); }
@@ -192,6 +202,7 @@
     padding: 4px;
     font-weight: 700;
     transition: color 0.15s;
+    flex-shrink: 0;
   }
   .delete-btn:hover { color: #b03a3a; }
 
@@ -217,6 +228,14 @@
     font-size: 14.5px;
     color: #ff6ec4;
     display: none;
+  }
+
+  /* Extra breathing room fix for small phones */
+  @media (max-width: 420px) {
+    body { padding: 40px 14px; }
+    .app { padding: 26px 20px; }
+    h1 { font-size: 24px; }
+    #addBtn { padding: 0 18px; font-size: 18px; }
   }
 </style>
 </head>
@@ -343,6 +362,5 @@
   // Run once at the start so the empty message shows correctly
   updateStats();
 </script>
-
 </body>
-</html>
+    </html>
