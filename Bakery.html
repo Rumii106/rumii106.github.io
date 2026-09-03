@@ -3,22 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Maple & Crumb — Est. 1918</title>
+<title>Maple & Crumb — Artisan Bakery</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Caveat:wght@600&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Caveat:wght@600&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   :root {
-    --paper: #ecdfc4;
-    --paper-light: #f7efdb;
-    --ink: #2c2114;
-    --ink-soft: #6d5c42;
-    --wine: #5c2438;
-    --wine-deep: #421828;
-    --brass: #9c7a2e;
-    --sage: #59684a;
-    --line: #b99b5e;
+    --paper: #fbf1d9;
+    --paper-light: #fffbf0;
+    --ink: #2b1c10;
+    --ink-soft: #7a5c3e;
+    --rust: #6b4226;
+    --rust-deep: #46290f;
+    --gold: #d9a441;
+    --line: #e3c67e;
   }
 
   html { scroll-behavior: smooth; }
@@ -27,92 +26,98 @@
     background-color: var(--paper);
     background-image:
       url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E"),
-      radial-gradient(circle at 15% 5%, rgba(255,255,255,0.25), transparent 40%),
-      radial-gradient(circle at 90% 90%, rgba(0,0,0,0.08), transparent 45%);
+      radial-gradient(circle at 12% 0%, rgba(255,255,255,0.3), transparent 42%),
+      radial-gradient(circle at 92% 96%, rgba(0,0,0,0.1), transparent 48%);
     color: var(--ink);
     font-family: 'EB Garamond', serif;
     font-size: 18px;
     line-height: 1.6;
   }
 
-  .page-frame { border: 10px double var(--ink); margin: 14px; min-height: calc(100vh - 28px); }
+  .page-frame { border: 9px double var(--ink); margin: 14px; min-height: calc(100vh - 28px); }
 
   section, header, footer { max-width: 780px; margin: 0 auto; padding: 0 30px; }
 
-  .emoji { font-size: 18px; line-height: 1; }
+  .icon svg { display: block; }
 
-  /* ---------- ornamental divider ---------- */
+  /* ---------- divider ---------- */
   .divider { display: flex; align-items: center; justify-content: center; gap: 14px; margin: 0 auto; }
-  .divider .stroke { height: 1px; width: 60px; background: var(--line); }
-  .divider .mark { font-size: 17px; }
+  .divider .stroke { height: 1.5px; width: 64px; background: var(--gold); }
+  .divider .mark { color: var(--rust); font-size: 15px; }
 
   /* ---------- Nav ---------- */
   nav { padding: 30px 0 0; text-align: center; }
   .brand-row { display: flex; align-items: center; justify-content: center; gap: 10px; }
   .brand {
-    font-family: 'Abril Fatface', serif; font-size: 26px;
-    color: var(--wine-deep); text-decoration: none; letter-spacing: 0.5px;
+    font-family: 'Abril Fatface', serif; font-size: 27px;
+    color: var(--rust-deep); text-decoration: none; letter-spacing: 0.4px;
   }
   .brand-sub {
-    font-family: 'Caveat', cursive; font-size: 17px; color: var(--wine);
-    display: block; margin-top: -2px;
+    font-family: 'EB Garamond', serif; font-style: italic; font-weight: 600; font-size: 14px; color: var(--ink-soft);
+    display: block; margin-top: 4px; letter-spacing: 0.8px;
   }
-  .nav-links { display: flex; gap: 30px; justify-content: center; margin-top: 16px; }
+  .nav-links { display: flex; align-items: center; gap: 16px; justify-content: center; margin-top: 18px; }
   .nav-links a {
-    color: var(--ink-soft); text-decoration: none; font-size: 15px; font-weight: 500;
+    color: var(--ink); text-decoration: none; font-size: 15px; font-weight: 600;
     letter-spacing: 0.3px; font-family: 'EB Garamond', serif; font-style: italic;
   }
-  .nav-links a:hover { color: var(--wine); }
+  .nav-links a:hover { color: var(--rust); }
+  .nav-links .sep { color: var(--gold); font-size: 12px; }
 
   /* ---------- Hero ---------- */
-  .hero { padding-top: 48px; padding-bottom: 46px; text-align: center; }
+  .hero { padding-top: 40px; padding-bottom: 44px; text-align: center; }
   .hero-eyebrow {
-    font-family: 'Caveat', cursive; font-size: 22px; color: var(--wine); margin-bottom: 4px;
+    font-size: 13.5px; color: var(--rust); font-weight: 700; letter-spacing: 2.5px;
+    text-transform: uppercase; margin-bottom: 16px;
   }
   .hero h1 {
-    font-family: 'Abril Fatface', serif; font-size: 44px; font-weight: 400; line-height: 1.2;
-    color: var(--wine-deep); margin: 0 auto 22px; max-width: 560px;
+    font-family: 'Abril Fatface', serif; font-size: 47px; font-weight: 400; line-height: 1.18;
+    color: var(--ink); margin: 0 auto 8px; max-width: 580px;
   }
-  .hero p {
-    font-size: 18px; color: var(--ink-soft); margin: 0 auto 30px; max-width: 460px;
-  }
+  .hero h1 .accent { color: var(--gold); }
 
-  .seal {
-    width: 112px; height: 112px; border-radius: 50%;
-    border: 2px solid var(--sage); margin: 0 auto 24px;
+  /* signature badge — the one bold "wow" element */
+  .badge {
+    width: 130px; height: 130px; border-radius: 50%;
+    background: var(--rust); margin: 22px auto 24px;
     display: flex; align-items: center; justify-content: center;
-    position: relative; background: var(--paper-light);
+    position: relative; box-shadow: 0 8px 0 rgba(0,0,0,0.08);
   }
-  .seal::before {
-    content: ""; position: absolute; inset: 6px; border-radius: 50%;
-    border: 1px dashed var(--sage);
+  .badge::before {
+    content: ""; position: absolute; inset: 7px; border-radius: 50%;
+    border: 1.5px dashed rgba(250,241,218,0.55);
   }
-  .seal-text {
-    font-family: 'Abril Fatface', serif; font-size: 12.5px; color: var(--sage);
-    line-height: 1.35; text-align: center;
+  .badge-text {
+    font-family: 'Abril Fatface', serif; font-size: 13.5px; color: var(--paper-light);
+    line-height: 1.4; text-align: center;
   }
-  .seal-text .small { font-family: 'EB Garamond', serif; font-style: italic; font-size: 11px; display: block; margin-top: 2px; }
+  .badge-text .small { font-family: 'EB Garamond', serif; font-style: italic; font-weight: 600; font-size: 11.5px; display: block; margin-top: 3px; }
 
-  .hero-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .hero p {
+    font-size: 17.5px; color: var(--ink-soft); margin: 0 auto 30px; max-width: 440px;
+  }
+
+  .hero-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
   .btn {
-    font-family: 'EB Garamond', serif; font-weight: 600; font-size: 16px;
-    padding: 12px 30px; text-decoration: none; border-radius: 2px;
+    font-family: 'EB Garamond', serif; font-weight: 700; font-size: 15.5px;
+    padding: 13px 28px; text-decoration: none; border-radius: 2px;
     display: inline-flex; align-items: center; gap: 8px; letter-spacing: 0.3px;
   }
-  .btn-primary { background: var(--wine); color: var(--paper-light); }
-  .btn-primary:hover { background: var(--wine-deep); }
+  .btn-primary { background: var(--rust); color: var(--paper-light); }
+  .btn-primary:hover { background: var(--rust-deep); }
   .btn-ghost { background: transparent; border: 1.5px solid var(--ink); color: var(--ink); }
   .btn-ghost:hover { background: var(--ink); color: var(--paper-light); }
 
   /* ---------- Section framing ---------- */
   .section-pad { padding-top: 54px; padding-bottom: 8px; }
   .section-head { text-align: center; margin-bottom: 28px; }
-  .section-head .kicker {
-    font-family: 'Caveat', cursive; font-size: 21px; color: var(--wine);
-    display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 2px;
+  .kicker {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 13.5px; color: var(--rust); font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; margin-bottom: 10px;
   }
   .section-head h2 {
-    font-family: 'Abril Fatface', serif; font-size: 30px; font-weight: 400; color: var(--wine-deep);
+    font-family: 'Abril Fatface', serif; font-size: 31px; font-weight: 400; color: var(--ink);
   }
 
   /* ---------- Menu — vintage dotted-leader board ---------- */
@@ -126,36 +131,38 @@
     pointer-events: none;
   }
   .menu-row { display: flex; align-items: baseline; gap: 10px; padding: 12px 0; }
-  .menu-row .item-name { font-family: 'EB Garamond', serif; font-weight: 600; font-size: 18.5px; white-space: nowrap; display: flex; align-items: center; gap: 8px; }
-  .menu-row .leader { flex: 1; border-bottom: 1.5px dotted var(--line); height: 1px; transform: translateY(-4px); }
-  .menu-row .item-price { font-family: 'EB Garamond', serif; font-weight: 600; font-size: 17px; color: var(--wine); white-space: nowrap; }
-  .menu-row .item-desc { display: block; font-style: italic; font-size: 14.5px; color: var(--ink-soft); margin-top: -7px; margin-bottom: 3px; margin-left: 26px; }
+  .menu-row .item-name { font-family: 'EB Garamond', serif; font-weight: 700; font-size: 18.5px; white-space: nowrap; display: flex; align-items: center; gap: 8px; }
+  .menu-row .leader { flex: 1; border-bottom: 1.5px dotted var(--gold); height: 1px; transform: translateY(-4px); }
+  .menu-row .item-price { font-family: 'Abril Fatface', serif; font-size: 17px; color: var(--rust); white-space: nowrap; }
+  .menu-row .item-desc { display: block; font-style: italic; font-size: 14.5px; color: var(--ink-soft); margin-top: -7px; margin-bottom: 4px; margin-left: 28px; }
 
   /* ---------- About ---------- */
   .about-text { text-align: center; max-width: 560px; margin: 0 auto; }
   .about-text p { color: var(--ink-soft); margin-bottom: 16px; }
   .about-text strong { color: var(--ink); }
 
-  .stat-row { display: flex; justify-content: center; gap: 46px; margin-top: 32px; flex-wrap: wrap; }
-  .stat { text-align: center; }
-  .stat .num { font-family: 'Abril Fatface', serif; font-size: 29px; color: var(--sage); }
-  .stat .label { font-size: 14px; color: var(--ink-soft); font-style: italic; margin-top: 4px; max-width: 130px; }
+  .stat-row { display: flex; justify-content: center; gap: 18px; margin-top: 32px; flex-wrap: wrap; }
+  .stat {
+    text-align: center; background: var(--paper-light); border: 1.5px solid var(--line);
+    padding: 16px 24px; min-width: 110px;
+  }
+  .stat .num { font-family: 'Abril Fatface', serif; font-size: 28px; color: var(--rust); }
+  .stat .label { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-top: 4px; }
 
   /* ---------- Visit ---------- */
   .visit-box {
     margin-top: 58px; margin-bottom: 66px;
     background: var(--ink); border-radius: 2px;
     padding: 46px 40px; color: var(--paper-light); text-align: center;
-    border: 1px solid var(--brass);
   }
   .visit-box h2 { font-family: 'Abril Fatface', serif; font-size: 27px; font-weight: 400; margin-bottom: 6px; }
-  .visit-box .sub { font-family: 'Caveat', cursive; font-size: 19px; color: #d3b361; margin-bottom: 20px; }
-  .visit-box p { color: #ddcfa9; font-size: 15.5px; margin-bottom: 4px; }
+  .visit-box .sub { font-family: 'Caveat', cursive; font-weight: 600; font-size: 19px; color: var(--gold); margin-bottom: 20px; }
+  .visit-box p { color: #e2d3ab; font-size: 15.5px; margin-bottom: 4px; }
   .hours-block { max-width: 280px; margin: 20px auto 0; }
   .visit-box .hours-row { display: flex; justify-content: space-between; font-size: 15px; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.14); font-style: italic; }
-  .visit-box .hours-row span:last-child { color: #ddcfa9; font-style: normal; }
-  .visit-box .btn-primary { background: var(--brass); color: var(--ink); margin-top: 22px; }
-  .visit-box .btn-primary:hover { background: #7c6224; }
+  .visit-box .hours-row span:last-child { color: #e2d3ab; font-style: normal; }
+  .visit-box .btn-primary { background: var(--gold); color: var(--ink); margin-top: 22px; }
+  .visit-box .btn-primary:hover { background: #a97c2f; }
 
   footer {
     text-align: center; padding: 26px; color: var(--ink-soft);
@@ -164,11 +171,13 @@
 
   @media (max-width: 620px) {
     .page-frame { margin: 8px; border-width: 6px; }
-    .hero h1 { font-size: 30px; }
-    .nav-links { gap: 16px; }
+    .hero h1 { font-size: 32px; }
+    .badge { width: 106px; height: 106px; }
+    .nav-links { gap: 10px; }
     .nav-links a { font-size: 13px; }
     .menu-frame { padding: 24px 18px; }
-    .stat-row { gap: 26px; }
+    .stat-row { gap: 12px; }
+    .stat { min-width: 92px; padding: 14px 14px; }
     .visit-box { padding: 36px 22px; }
   }
 </style>
@@ -178,71 +187,80 @@
 
 <nav>
   <div class="brand-row">
-    <span class="emoji">🌾</span>
+    <span class="icon">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#b8502e" stroke-width="1.4"><path d="M12 2c0 4-2 5-2 9s2 5 2 11c0-6 2-7 2-11s-2-5-2-9z"/><path d="M12 6c-3 1-4 3-4 3M12 6c3 1 4 3 4 3M12 11c-3 1-4 3-4 3M12 11c3 1 4 3 4 3"/></svg>
+    </span>
     <a href="#" class="brand">Maple &amp; Crumb</a>
-    <span class="emoji">🌾</span>
+    <span class="icon">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#b8502e" stroke-width="1.4"><path d="M12 2c0 4-2 5-2 9s2 5 2 11c0-6 2-7 2-11s-2-5-2-9z"/><path d="M12 6c-3 1-4 3-4 3M12 6c3 1 4 3 4 3M12 11c-3 1-4 3-4 3M12 11c3 1 4 3 4 3"/></svg>
+    </span>
   </div>
-  <span class="brand-sub">est. 1918, baked by hand</span>
+  <span class="brand-sub">ARTISAN BAKERY · JAMMU</span>
   <div class="nav-links">
     <a href="#menu">Menu</a>
+    <span class="sep">✦</span>
     <a href="#about">Our Story</a>
+    <span class="sep">✦</span>
     <a href="#visit">Visit</a>
   </div>
 </nav>
 
 <section class="hero">
-  <div class="hero-eyebrow">flour, water, salt — and nowhere to be in a hurry</div>
-  <h1>Every loaf begins the night before.</h1>
+  <div class="hero-eyebrow">baked fresh, every single morning</div>
+  <h1>Bread worth <span class="accent">waking early</span> for.</h1>
 
-  <div class="seal">
-    <div class="seal-text">HAND MADE<span class="small">no shortcuts since 1918</span></div>
+  <div class="badge">
+    <div class="badge-text">HAND MADE<span class="small">no shortcuts, ever</span></div>
   </div>
 
-  <p>Four generations of one family, one starter kept alive since 1918, and a bakery that has never once rushed a rise.</p>
+  <p>One starter, kept alive for years. No shortcuts, no additives — just flour, water, salt, and the patience to wait.</p>
   <div class="hero-actions">
-    <a href="#menu" class="btn btn-primary">See what's warm today</a>
-    <a href="#visit" class="btn btn-ghost">Come find us</a>
+    <a href="#menu" class="btn btn-primary">See today's menu</a>
+    <a href="#visit" class="btn btn-ghost">Find our door</a>
   </div>
 </section>
 
-<div class="divider"><div class="stroke"></div><div class="mark">🥖</div><div class="stroke"></div></div>
+<div class="divider"><div class="stroke"></div><div class="mark">❖</div><div class="stroke"></div></div>
 
 <section class="section-pad" id="menu">
   <div class="section-head">
-    <div class="kicker"><span class="emoji">🍞</span> warm from this morning's bake</div>
-    <h2>What's Coming Out Today</h2>
+    <div class="kicker">
+      <span class="icon"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#b8502e" stroke-width="1.6"><path d="M4 19h16M6 19c0-6 2-9 6-14 4 5 6 8 6 14"/></svg></span>
+      the menu board
+    </div>
+    <h2>What's In the Oven Today</h2>
   </div>
   <div class="menu-frame">
     <div class="menu-row">
-      <div class="item-name"><span class="emoji">🍞</span> Sourdough Country Loaf</div>
+      <div class="item-name">🍞 Sourdough Country Loaf</div>
       <div class="leader"></div>
       <div class="item-price">₹220</div>
     </div>
     <span class="item-desc">48-hour fermented, crisp crust, open crumb</span>
 
     <div class="menu-row">
-      <div class="item-name"><span class="emoji">🌾</span> Honey Oat Loaf</div>
+      <div class="item-name">🌾 Honey Oat Loaf</div>
       <div class="leader"></div>
       <div class="item-price">₹200</div>
     </div>
     <span class="item-desc">rolled oats, wildflower honey, soft crumb</span>
 
     <div class="menu-row">
-      <div class="item-name"><span class="emoji">🥐</span> Butter Croissant</div>
+      <div class="item-name">🥐 Butter Croissant</div>
       <div class="leader"></div>
       <div class="item-price">₹110</div>
     </div>
     <span class="item-desc">laminated over three days, baked to order</span>
 
     <div class="menu-row">
-      <div class="item-name"><span class="emoji">🍥</span> Cinnamon Roll</div>
+      <div class="item-name">🍥 Cinnamon Roll</div>
       <div class="leader"></div>
       <div class="item-price">₹130</div>
     </div>
     <span class="item-desc">brown sugar, cinnamon, brown-butter icing</span>
 
     <div class="menu-row">
-      <div class="item-name"><span class="emoji">🍫</span> Chocolate Babka</div>
+      <div class="item-name">🍫 Chocolate Babka</div>
       <div class="leader"></div>
       <div class="item-price">₹280</div>
     </div>
@@ -250,28 +268,31 @@
   </div>
 </section>
 
-<div class="divider" style="margin-top:52px;"><div class="stroke"></div><div class="mark">🥖</div><div class="stroke"></div></div>
+<div class="divider" style="margin-top:52px;"><div class="stroke"></div><div class="mark">❖</div><div class="stroke"></div></div>
 
 <section class="section-pad" id="about">
   <div class="section-head">
-    <div class="kicker"><span class="emoji">🕰️</span> a family recipe, kept alive</div>
+    <div class="kicker">
+      <span class="icon"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#b8502e" stroke-width="1.6"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5v5l3.2 1.8"/></svg></span>
+      our story
+    </div>
     <h2>Passed Down, Not Written Down</h2>
   </div>
   <div class="about-text">
-    <p>It began with one oven in a family kitchen, and a starter that has never been allowed to die. Three generations later, it's the same starter — just older, and better for it.</p>
-    <p>We still weigh flour by hand and let dough rise on its own time, not the clock's. <strong>Nothing here is written on a recipe card</strong> — it lives in whoever's hands are kneading that morning.</p>
+    <p>It began with one oven and a starter that has never been allowed to die. We still weigh flour by hand and let dough rise on its own time, not the clock's.</p>
+    <p><strong>Nothing here is written on a recipe card</strong> — it lives in whoever's hands are kneading that morning.</p>
     <div class="stat-row">
-      <div class="stat"><div class="num">5am</div><div class="label">when the ovens go on</div></div>
-      <div class="stat"><div class="num">4</div><div class="label">ingredients in our sourdough</div></div>
-      <div class="stat"><div class="num">0</div><div class="label">preservatives, ever</div></div>
+      <div class="stat"><div class="num">5am</div><div class="label">ovens go on</div></div>
+      <div class="stat"><div class="num">4</div><div class="label">ingredients, no more</div></div>
+      <div class="stat"><div class="num">0</div><div class="label">preservatives</div></div>
     </div>
   </div>
 </section>
 
 <section id="visit">
   <div class="visit-box">
-    <h2>Pull up a chair, the kettle's on</h2>
-    <div class="sub">no reservation needed</div>
+    <h2>Come by for something warm</h2>
+    <div class="sub">we'd love to see you</div>
     <p>Shop 4, Residency Road</p>
     <p>Jammu, Jammu &amp; Kashmir</p>
     <div class="hours-block">
@@ -284,7 +305,7 @@
 </section>
 
 <footer>
-  © 2026 Maple &amp; Crumb Bakery — since 1918
+  © 2026 Maple &amp; Crumb Bakery
 </footer>
 
 </div>
