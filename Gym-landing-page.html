@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloom &amp; Barbell | Cozy Gym &amp; Wellness</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  /* ====== NUDE + MATTE PALETTE (change here to restyle everything) ====== */
+  :root{
+    --bg:#EFE6DA;        /* oat */
+    --paper:#F8F2E9;     /* warm off-white */
+    --sand:#E2D3C0;      /* sand */
+    --taupe:#B9A28B;     /* taupe */
+    --rose:#D9B2A4;      /* dusty nude rose */
+    --clay:#B57A60;      /* muted terracotta */
+    --mocha:#6B4F3F;     /* mocha */
+    --espresso:#33261F;  /* deep brown */
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--espresso);line-height:1.7;overflow-x:hidden}
+  /* soft film-grain for the matte feel */
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:100;opacity:.07;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  h1,h2,h3{font-family:'Playfair Display',serif;line-height:1.1;font-weight:500}
+  a{text-decoration:none;color:inherit}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 24px}
+  section{padding:90px 0}
+  .eyebrow{font-size:13px;letter-spacing:3px;text-transform:uppercase;color:var(--clay);font-weight:700}
+  .head{margin-bottom:46px}
+  .head h2{font-size:clamp(34px,5vw,54px);margin-top:10px}
+  .head h2 em{color:var(--clay)}
+
+  /* NAV (floating pill) */
+  nav{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:50;width:min(94%,860px);
+    background:rgba(248,242,233,.82);backdrop-filter:blur(12px);border-radius:60px;
+    padding:10px 14px 10px 26px;display:flex;justify-content:space-between;align-items:center;
+    box-shadow:0 8px 30px rgba(51,38,31,.08)}
+  .logo{font-family:'Playfair Display',serif;font-size:22px;font-weight:700}
+  .logo span{color:var(--clay)}
+  nav ul{display:flex;gap:26px;list-style:none;font-size:15px;font-weight:500}
+  nav ul a:hover{color:var(--clay)}
+
+  /* BUTTONS */
+  .btn{display:inline-block;padding:14px 30px;border-radius:60px;font-weight:700;font-size:15px;transition:.3s;border:2px solid transparent}
+  .btn-dark{background:var(--espresso);color:var(--paper)}
+  .btn-dark:hover{background:var(--clay);transform:translateY(-3px)}
+  .btn-line{border-color:var(--espresso)}
+  .btn-line:hover{background:var(--espresso);color:var(--paper)}
+  .btn-sm{padding:10px 22px;font-size:14px}
+
+  /* HERO */
+  .hero{padding-top:150px;padding-bottom:70px}
+  .hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:50px;align-items:center}
+  .pill .ic{width:18px;height:18px;margin-right:9px;vertical-align:-4px;fill:none;stroke:var(--clay);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+  .pill{display:inline-block;border:1.5px solid var(--taupe);padding:7px 18px;border-radius:50px;font-size:13px;margin-bottom:24px;color:var(--mocha)}
+  .hero h1{font-size:clamp(46px,7.5vw,92px);margin-bottom:22px}
+  .hero h1 em{color:var(--clay);font-style:italic}
+  .hero p{font-size:18px;color:var(--mocha);max-width:440px;margin-bottom:32px}
+  .hero .btns{display:flex;gap:14px;flex-wrap:wrap}
+  /* arch collage */
+  .arches{display:flex;gap:16px;align-items:flex-end;justify-content:center}
+  .arch{border-radius:999px 999px 24px 24px;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:20px;color:var(--paper);font-family:'Caveat',cursive;font-size:32px;line-height:1}
+  .arches{position:relative}
+  .badge{position:absolute;right:-6px;top:-34px;width:112px;height:112px;z-index:5;display:flex;align-items:center;justify-content:center;background:var(--paper);border-radius:50%;box-shadow:0 10px 26px rgba(51,38,31,.14)}
+  .badge svg{position:absolute;inset:0;width:100%;height:100%;animation:spin 18s linear infinite}
+  .badge span{font-size:24px;color:var(--clay)}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .tape{position:absolute;left:-14px;bottom:26px;z-index:5;background:rgba(217,178,164,.92);color:var(--espresso);font-family:'Caveat',cursive;font-size:24px;padding:4px 22px;transform:rotate(-6deg);box-shadow:0 6px 16px rgba(51,38,31,.15);clip-path:polygon(4% 0,100% 0,96% 50%,100% 100%,0 100%,4% 50%)}
+  .arch.a1{width:48%;height:380px;background:linear-gradient(160deg,var(--taupe),var(--mocha))}
+  .arch.a2{width:48%;height:300px;background:linear-gradient(160deg,var(--rose),var(--clay));margin-bottom:50px}
+  /* TO USE YOUR OWN PHOTO: add style="background-image:url('photo.jpg');background-size:cover" to an .arch */
+
+  /* PHOTOS (hidden automatically if the image file is missing) */
+  .arch img,.prog img,.tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;
+    filter:sepia(.2) saturate(.88) contrast(.96) brightness(1.02)} /* warm matte tone so every photo matches the palette */
+  .arch::after,.prog::after,.tile::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(51,38,31,.6));z-index:1}
+  .arch span,.prog h3,.prog p,.tile span{position:relative;z-index:2}
+  .prog{overflow:hidden}
+  .art{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+
+  /* FOOD GALLERY */
+  .gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .tile{position:relative;overflow:hidden;border-radius:26px;height:300px;display:flex;align-items:flex-end;padding:20px;color:var(--paper);font-family:'Caveat',cursive;font-size:32px;line-height:1;transition:.4s}
+  .tile:hover{transform:translateY(-8px) rotate(-1deg)}
+  .tile:nth-child(1){background:#D9E0CC;border-radius:200px 200px 26px 26px}
+  .tile:nth-child(2){background:#F1D4CC;height:360px}
+  .tile:nth-child(3){background:#E8D8C2;border-radius:200px 200px 26px 26px}
+  .tile:nth-child(4){background:#F0E0C6;height:340px}
+  .tile::after{display:none}
+  .tile span{white-space:nowrap;background:var(--paper);color:var(--espresso);padding:7px 20px 4px;border-radius:30px;font-size:27px;box-shadow:0 6px 16px rgba(51,38,31,.14)}
+  @media(max-width:800px){.gallery{grid-template-columns:repeat(2,1fr)}.tile{height:240px!important}}
+
+  /* TICKER (two crossing bands) */
+  .ticker{position:relative;padding:34px 0 30px;overflow:hidden}
+  .band{white-space:nowrap;overflow:hidden;padding:15px 0;margin:0 -30px}
+  .band div{display:inline-block;animation:slide 38s linear infinite}
+  .band:hover div{animation-play-state:paused}
+  .band.b1{background:var(--espresso);color:var(--sand);transform:rotate(-1.6deg);font-family:'Playfair Display',serif;font-style:italic;font-size:27px;position:relative;z-index:2}
+  .band.b2{background:var(--rose);color:var(--espresso);transform:rotate(1.4deg);margin-top:-12px;font-family:'Caveat',cursive;font-size:34px;line-height:1.1}
+  .band.b2 div{animation-direction:reverse;animation-duration:44s}
+  .band em,.band b{font-style:inherit;font-weight:inherit;margin:0 4px}
+  .st{display:inline-block;width:17px;height:17px;margin:0 28px;vertical-align:-1px;fill:currentColor}
+  .band.b1 .st{fill:var(--rose)}
+  .band.b2 .st{fill:var(--clay)}
+  @keyframes slide{to{transform:translateX(-50%)}}
+
+  /* ABOUT / WHY */
+  .why{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:26px}
+  .wcard{background:var(--paper);border-radius:34px;padding:14px 14px 32px;transition:.4s;text-align:center}
+  .wcard:hover{transform:translateY(-8px);box-shadow:0 22px 44px rgba(107,79,63,.16)}
+  .wart{position:relative;height:190px;border-radius:120px 120px 24px 24px;overflow:hidden;margin-bottom:26px}
+  .wcard:nth-child(1) .wart{background:linear-gradient(160deg,var(--taupe),var(--mocha))}
+  .wcard:nth-child(2) .wart{background:linear-gradient(160deg,var(--rose),var(--clay))}
+  .wcard:nth-child(3) .wart{background:linear-gradient(160deg,#C9B49B,var(--mocha))}
+  .wart svg{position:absolute;inset:0;width:100%;height:100%}
+  .wnum{position:absolute;left:50%;bottom:-1px;transform:translateX(-50%);z-index:2;background:var(--paper);color:var(--clay);
+    font-family:'Playfair Display',serif;font-style:italic;font-size:22px;line-height:1;padding:9px 22px 6px;border-radius:30px 30px 0 0;letter-spacing:1px}
+  .wcard h3{font-size:25px;margin:0 14px 10px}
+  .wcard p{font-size:15px;color:var(--mocha);margin:0 22px}
+
+  /* PROGRAMS */
+  .programs{background:var(--sand);border-radius:60px 60px 0 0}
+  .prog-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px}
+  .prog{border-radius:200px 200px 28px 28px;padding:150px 24px 28px;color:var(--paper);position:relative;min-height:340px;display:flex;flex-direction:column;justify-content:flex-end;transition:.4s}
+  .prog:hover{transform:translateY(-8px)}
+  .prog:nth-child(1){background:linear-gradient(180deg,var(--taupe),var(--mocha))}
+  .prog:nth-child(2){background:linear-gradient(180deg,var(--rose),var(--clay))}
+  .prog:nth-child(3){background:linear-gradient(180deg,#C9B49B,var(--taupe))}
+  .prog:nth-child(4){background:linear-gradient(180deg,var(--mocha),var(--espresso))}
+  .prog h3{font-size:26px}
+  .prog p{font-size:14px;opacity:.9}
+
+  /* PRICING */
+  .plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:22px;align-items:center}
+  .plan{background:var(--paper);border-radius:32px;padding:38px 30px;text-align:center}
+  .plan.best{background:var(--espresso);color:var(--paper);padding:50px 30px}
+  .plan h3{font-size:24px}
+  .price{font-family:'Playfair Display',serif;font-size:46px;margin:12px 0}
+  .plan.best .price{color:var(--rose)}
+  .price small{font-family:'DM Sans',sans-serif;font-size:15px;opacity:.65}
+  .plan ul{list-style:none;margin:18px 0 28px;font-size:15px}
+  .plan li{padding:7px 0;border-bottom:1px dashed rgba(185,162,139,.5)}
+  .plan.best .btn-line{border-color:var(--rose);color:var(--rose)}
+  .plan.best .btn-line:hover{background:var(--rose);color:var(--espresso)}
+
+  /* CONTACT */
+  .info{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .box{background:var(--paper);border-radius:32px;padding:38px}
+  .box h3{font-size:28px;margin-bottom:18px}
+  .box p{margin-bottom:8px;color:var(--mocha)}
+  .ci{display:flex;gap:14px;align-items:flex-start;margin-bottom:14px}
+  .ci svg{width:20px;height:20px;flex:none;padding:10px;background:var(--sand);border-radius:50%;box-sizing:content-box;fill:none;stroke:var(--clay);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+  .ci{align-items:center}
+  .row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px dashed var(--taupe)}
+
+  /* CTA */
+  .cta{background:linear-gradient(135deg,var(--rose),var(--clay));border-radius:44px;text-align:center;padding:70px 24px;color:var(--paper)}
+  .cta h2{font-size:clamp(32px,5vw,56px);margin-bottom:14px}
+  .cta p{margin-bottom:28px;opacity:.95}
+  .cta .btn-dark:hover{background:var(--paper);color:var(--espresso)}
+  footer{text-align:center;padding:34px 0;font-size:14px;color:var(--mocha)}
+
+  /* SCROLL REVEAL */
+  .reveal{opacity:0;transform:translateY(34px);transition:opacity .9s ease,transform .9s ease}
+  .reveal.show{opacity:1;transform:none}
+
+  @media(max-width:800px){
+    nav ul{display:none}
+    nav{justify-content:space-between}
+    .hero .wrap,.info{grid-template-columns:1fr}
+    .arch.a1{height:280px}.arch.a2{height:220px}
+    section{padding:64px 0}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="logo">Bloom <span>&amp;</span> Barbell</a>
+  <ul>
+    <li><a href="#why">About</a></li>
+    <li><a href="#programs">Programs</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="tel:+919123456780" class="btn btn-dark btn-sm">Call us</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="pill"><svg class="ic" viewBox="0 0 24 24"><path d="M4 9h12v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5z"/><path d="M16 11h2a2.5 2.5 0 0 1 0 5h-2"/><path d="M8 3c0 1.5 1 1.5 1 3M12 3c0 1.5 1 1.5 1 3"/></svg>slow mornings &middot; soft strength</span>
+      <h1>Strong,<br>but make it <em>soft.</em></h1>
+      <p>A calm, cozy space for strength, yoga and mindful movement. No loud music, no pressure. Just you and your pace.</p>
+      <div class="btns">
+        <a href="tel:+919123456780" class="btn btn-dark">Book a free trial</a>
+        <a href="#programs" class="btn btn-line">Explore classes</a>
+      </div>
+    </div>
+    <div class="arches">
+      <div class="badge"><svg viewBox="0 0 120 120"><defs><path id="c" d="M60 60m-44 0a44 44 0 1 1 88 0a44 44 0 1 1-88 0"/></defs><text font-size="11.5" letter-spacing="2.6" fill="#6B4F3F" font-family="DM Sans,sans-serif" font-weight="700"><textPath href="#c">SOFT STRENGTH &#8226; SLOW MORNINGS &#8226; </textPath></text></svg><span>&#10022;</span></div>
+      <div class="tape">new batch this month</div>
+    <div class="arch a1"><svg class="art" viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><circle cx="150" cy="170" r="82" fill="#F8F2E9" opacity=".16"/><circle cx="150" cy="170" r="112" fill="none" stroke="#F8F2E9" stroke-width="1.5" opacity=".3"/><path d="M48 59Q48 70 59 70Q48 70 48 81Q48 70 37 70Q48 70 48 59Z" fill="#F8F2E9" opacity="0.85"/><path d="M252 102Q252 110 260 110Q252 110 252 118Q252 110 244 110Q252 110 252 102Z" fill="#F8F2E9" opacity="0.85"/><path d="M232 34Q232 40 238 40Q232 40 232 46Q232 40 226 40Q232 40 232 34Z" fill="#F8F2E9" opacity="0.6"/><circle cx="62" cy="150" r="3.5" fill="#F8F2E9" opacity=".6"/><circle cx="246" cy="196" r="3" fill="#F8F2E9" opacity=".5"/><g fill="#F8F2E9"><rect x="64" y="188" width="172" height="12" rx="6" opacity=".95"/><rect x="44" y="156" width="22" height="76" rx="9"/><rect x="70" y="168" width="16" height="52" rx="7" opacity=".85"/><rect x="234" y="156" width="22" height="76" rx="9"/><rect x="214" y="168" width="16" height="52" rx="7" opacity=".85"/></g><g transform="translate(52 360) scale(1 1)"><path d="M0 0Q-6 -50 6 -100" stroke="#F8F2E9" stroke-width="3" fill="none" opacity=".75" stroke-linecap="round"/><g transform="translate(0 -25) rotate(-55) scale(0.7)"><path d="M0 0Q16 -26 0 -54Q-16 -26 0 0Z" fill="#F8F2E9" opacity="0.7"/></g><g transform="translate(2 -45) rotate(50) scale(0.75)"><path d="M0 0Q16 -26 0 -54Q-16 -26 0 0Z" fill="#F8F2E9" opacity="0.7"/></g><g transform="translate(5 -68) rotate(-45) scale(0.7)"><path d="M0 0Q16 -26 0 -54Q-16 -26 0 0Z" fill="#F8F2E9" opacity="0.7"/></g><g transform="translate(6 -88) rotate(40) scale(0.65)"><path d="M0 0Q16 -26 0 -54Q-16 -26 0 0Z" fill="#F8F2E9" opacity="0.7"/></g></g><g transform="translate(250 360) scale(-1 1)"><path d="M0 0Q-6 -50 6 -100" stroke="#F8F2E9" stroke-width="3" fill="none" opacity=".75" stroke-linecap="round"/><g transform="translate(0 -25) rotate(-55) scale(0.7)"><path d="M0 0Q16 -26 0 -54Q-16 -26 0 0Z" fill="#F8F2E9" opacity="0.7"/></g><g transform="translate(2 -45) rotate(50) scale(0.75)"><path d="M0 0Q16 -26 0 -54Q-16 -26 0 0Z" fill="#F8F2E9" opacity="0.7"/></g><g transform="translate(5 -68) rotate(-45) scale(0.7)"><path d="M0 0Q16 -26 0 -54Q-16 -26 0 0Z" fill="#F8F2E9" opacity="0.7"/></g><g transform="translate(6 -88) rotate(40) scale(0.65)"><path d="M0 0Q16 -26 0 -54Q-16 -26 0 0Z" fill="#F8F2E9" opacity="0.7"/></g></g></svg><img src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?fm=jpg&q=75&w=800&auto=format&fit=crop" alt="Woman lifting a barbell" onerror="this.remove()"><span>Strength</span></div>
+      <div class="arch a2"><svg class="art" viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><circle cx="150" cy="170" r="82" fill="#F8F2E9" opacity=".16"/><circle cx="150" cy="170" r="112" fill="none" stroke="#F8F2E9" stroke-width="1.5" opacity=".3"/><path d="M48 59Q48 70 59 70Q48 70 48 81Q48 70 37 70Q48 70 48 59Z" fill="#F8F2E9" opacity="0.85"/><path d="M252 102Q252 110 260 110Q252 110 252 118Q252 110 244 110Q252 110 252 102Z" fill="#F8F2E9" opacity="0.85"/><path d="M232 34Q232 40 238 40Q232 40 232 46Q232 40 226 40Q232 40 232 34Z" fill="#F8F2E9" opacity="0.6"/><circle cx="62" cy="150" r="3.5" fill="#F8F2E9" opacity=".6"/><circle cx="246" cy="196" r="3" fill="#F8F2E9" opacity=".5"/><path d="M92 340V196A58 58 0 0 1 208 196V340Z" fill="#F8F2E9" opacity=".14" stroke="#F8F2E9" stroke-width="3" stroke-opacity=".85"/><path d="M150 138V340M92 220H208" stroke="#F8F2E9" stroke-width="2" opacity=".4"/><path d="M104 340h92l-8-44h-76z" fill="#F8F2E9" opacity=".9"/><g transform="translate(150 296) scale(1 1)"><path d="M0 0Q-6 -50 6 -100" stroke="#F8F2E9" stroke-width="3" fill="none" opacity=".75" stroke-linecap="round"/><g transform="translate(0 -25) rotate(-55) scale(0.7)"><path d="M0 0Q16 -26 0 -54Q-16 -26 0 0Z" fill="#F8F2E9" opacity="0.7"/></g><g transform="translate(2 -45) rotate(50) scale(0.75)"><path d="M0 0Q16 -26 0 -54Q-16 -26 0 0Z" fill="#F8F2E9" opacity="0.7"/></g><g transform="translate(5 -68) rotate(-45) scale(0.7)"><path d="M0 0Q16 -26 0 -54Q-16 -26 0 0Z" fill="#F8F2E9" opacity="0.7"/></g><g transform="translate(6 -88) rotate(40) scale(0.65)"><path d="M0 0Q16 -26 0 -54Q-16 -26 0 0Z" fill="#F8F2E9" opacity="0.7"/></g></g></svg><img src="https://images.unsplash.com/photo-1761839258420-5c3e2f2e2a74?fm=jpg&q=75&w=800&auto=format&fit=crop" alt="Woman lifting weights in a gym" onerror="this.remove()"><span>Confidence</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="ticker">
+  <div class="band b1"><div>soft strength<svg class="st" viewBox="0 0 24 24"><path d="M12 1Q12 12 23 12Q12 12 12 23Q12 12 1 12Q12 12 12 1Z"/></svg>slow mornings<svg class="st" viewBox="0 0 24 24"><path d="M12 1Q12 12 23 12Q12 12 12 23Q12 12 1 12Q12 12 12 1Z"/></svg>matcha &amp; muscle<svg class="st" viewBox="0 0 24 24"><path d="M12 1Q12 12 23 12Q12 12 12 23Q12 12 1 12Q12 12 12 1Z"/></svg>pilates girlies<svg class="st" viewBox="0 0 24 24"><path d="M12 1Q12 12 23 12Q12 12 12 23Q12 12 1 12Q12 12 12 1Z"/></svg>glow era<svg class="st" viewBox="0 0 24 24"><path d="M12 1Q12 12 23 12Q12 12 12 23Q12 12 1 12Q12 12 12 1Z"/></svg>yoga flow<svg class="st" viewBox="0 0 24 24"><path d="M12 1Q12 12 23 12Q12 12 12 23Q12 12 1 12Q12 12 12 1Z"/></svg>soft strength<svg class="st" viewBox="0 0 24 24"><path d="M12 1Q12 12 23 12Q12 12 12 23Q12 12 1 12Q12 12 12 1Z"/></svg>slow mornings<svg class="st" viewBox="0 0 24 24"><path d="M12 1Q12 12 23 12Q12 12 12 23Q12 12 1 12Q12 12 12 1Z"/></svg>matcha &amp; muscle<svg class="st" viewBox="0 0 24 24"><path d="M12 1Q12 12 23 12Q12 12 12 23Q12 12 1 12Q12 12 12 1Z"/></svg>pilates girlies<svg class="st" viewBox="0 0 24 24"><path d="M12 1Q12 12 23 12Q12 12 12 23Q12 12 1 12Q12 12 12 1Z"/></svg>glow era<svg class="st" viewBox="0 0 24 24"><path d="M12 1Q12 12 23 12Q12 12 12 23Q12 12 1 12Q12 12 12 1Z"/></svg>yoga flow<svg class="st" viewBox="0 0 24 24"><path d="M12 1Q12 12 23 12Q12 12 12 23Q12 12 1 12Q12 12 12 1Z"/></svg></div></div>
+  <div class="band b2"><div>bloom glow<svg class="st" viewBox="0 0 24 24"><path d="M12 1Q12 12 23 12Q12 12 12 23Q12 12 1 12Q12 12 12 1Z"/></svg>move gently<svg class="st" viewBox="0 0 24 24"><path d="M12 1Q12 12 23 12Q12 12 12 23Q12 12 1 12Q12 12 12 1Z"/></svg>stretch, sip, repeat<svg class="st" viewBox="0 0 24 24"><path d="M12 1Q12 12 23 12Q12 12 12 23Q12 12 1 12Q12 12 12 1Z"/></svg>strong is soft<svg class="st" viewBox="0 0 24 24"><path d="M12 1Q12 12 23 12Q12 12 12 23Q12 12 1 12Q12 12 12 1Z"/></svg>cozy reps only<svg class="st" viewBox="0 0 24 24"><path d="M12 1Q12 12 23 12Q12 12 12 23Q12 12 1 12Q12 12 12 1Z"/></svg>good energy<svg class="st" viewBox="0 0 24 24"><path d="M12 1Q12 12 23 12Q12 12 12 23Q12 12 1 12Q12 12 12 1Z"/></svg>bloom glow<svg class="st" viewBox="0 0 24 24"><path d="M12 1Q12 12 23 12Q12 12 12 23Q12 12 1 12Q12 12 12 1Z"/></svg>move gently<svg class="st" viewBox="0 0 24 24"><path d="M12 1Q12 12 23 12Q12 12 12 23Q12 12 1 12Q12 12 12 1Z"/></svg>stretch, sip, repeat<svg class="st" viewBox="0 0 24 24"><path d="M12 1Q12 12 23 12Q12 12 12 23Q12 12 1 12Q12 12 12 1Z"/></svg>strong is soft<svg class="st" viewBox="0 0 24 24"><path d="M12 1Q12 12 23 12Q12 12 12 23Q12 12 1 12Q12 12 12 1Z"/></svg>cozy reps only<svg class="st" viewBox="0 0 24 24"><path d="M12 1Q12 12 23 12Q12 12 12 23Q12 12 1 12Q12 12 12 1Z"/></svg>good energy<svg class="st" viewBox="0 0 24 24"><path d="M12 1Q12 12 23 12Q12 12 12 23Q12 12 1 12Q12 12 12 1Z"/></svg></div></div>
+</div>
+
+<!-- WHY -->
+<section id="why">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow">Why Bloom &amp; Barbell</span>
+      <h2>Your cozy <em>corner</em> to move</h2>
+    </div>
+    <div class="why reveal">
+      <div class="wcard"><div class="wart"><svg viewBox="0 0 240 190" preserveAspectRatio="xMidYMid slice"><circle cx="120" cy="100" r="70" fill="#F8F2E9" opacity=".15"/>
+<g fill="#F8F2E9"><circle cx="120" cy="82" r="17"/><path d="M88 160Q88 112 120 112Q152 112 152 160Z"/>
+<circle cx="70" cy="98" r="12" opacity=".7"/><path d="M48 160Q48 124 70 124Q92 124 92 160Z" opacity=".7"/>
+<circle cx="170" cy="98" r="12" opacity=".7"/><path d="M148 160Q148 124 170 124Q192 124 192 160Z" opacity=".7"/></g>
+<path d="M40 33Q40 40 47 40Q40 40 40 47Q40 40 33 40Q40 40 40 33Z" fill="#F8F2E9" opacity="0.85"/><path d="M204 43Q204 52 213 52Q204 52 204 61Q204 52 195 52Q204 52 204 43Z" fill="#F8F2E9" opacity="0.85"/><path d="M196 125Q196 130 201 130Q196 130 196 135Q196 130 191 130Q196 130 196 125Z" fill="#F8F2E9" opacity="0.6"/></svg><span class="wnum">01</span></div><h3>Small batches</h3><p>Limited members per class so you always get attention.</p></div>
+      <div class="wcard"><div class="wart"><svg viewBox="0 0 240 190" preserveAspectRatio="xMidYMid slice"><circle cx="120" cy="96" r="70" fill="#F8F2E9" opacity=".15"/>
+<path d="M120 112C84 88 84 56 106 52C116 50 120 60 120 60C120 60 124 50 134 52C156 56 156 88 120 112Z" fill="#F8F2E9"/>
+<g fill="#F8F2E9" opacity=".95"><rect x="62" y="134" width="116" height="8" rx="4"/><rect x="50" y="118" width="14" height="40" rx="6"/><rect x="176" y="118" width="14" height="40" rx="6"/><rect x="66" y="124" width="10" height="28" rx="4" opacity=".8"/><rect x="164" y="124" width="10" height="28" rx="4" opacity=".8"/></g>
+<path d="M46 37Q46 44 53 44Q46 44 46 51Q46 44 39 44Q46 44 46 37Z" fill="#F8F2E9" opacity="0.85"/><path d="M196 29Q196 38 205 38Q196 38 196 47Q196 38 187 38Q196 38 196 29Z" fill="#F8F2E9" opacity="0.85"/><path d="M206 107Q206 112 211 112Q206 112 206 117Q206 112 201 112Q206 112 206 107Z" fill="#F8F2E9" opacity="0.6"/></svg><span class="wnum">02</span></div><h3>Friendly trainers</h3><p>Certified coaches who guide you without judgement.</p></div>
+      <div class="wcard"><div class="wart"><svg viewBox="0 0 240 190" preserveAspectRatio="xMidYMid slice"><path d="M150 190V92A34 34 0 0 1 218 92V190Z" fill="#F8F2E9" opacity=".16" stroke="#F8F2E9" stroke-width="2.5" stroke-opacity=".8"/>
+<path d="M60 0V54" stroke="#F8F2E9" stroke-width="2.5" opacity=".8"/><path d="M36 94Q60 40 84 94Z" fill="#F8F2E9"/><circle cx="60" cy="102" r="26" fill="#F2D9A6" opacity=".35"/><circle cx="60" cy="100" r="5" fill="#F2D9A6"/>
+<path d="M104 190l8-34h40l8 34z" fill="#F8F2E9" opacity=".95" transform="translate(-30 0)"/>
+<g stroke="#F8F2E9" stroke-width="3" fill="none" stroke-linecap="round" opacity=".85" transform="translate(-30 0)"><path d="M132 156Q126 128 136 104M132 156Q146 134 158 122M132 156Q118 138 108 128"/></g>
+<g fill="#F8F2E9" opacity=".75" transform="translate(-30 0)"><ellipse cx="136" cy="100" rx="7" ry="14"/><ellipse cx="160" cy="118" rx="7" ry="13" transform="rotate(40 160 118)"/><ellipse cx="106" cy="124" rx="7" ry="13" transform="rotate(-40 106 124)"/></g>
+<path d="M30 144Q30 150 36 150Q30 150 30 156Q30 150 24 150Q30 150 30 144Z" fill="#F8F2E9" opacity="0.7"/><path d="M184 32Q184 40 192 40Q184 40 184 48Q184 40 176 40Q184 40 184 32Z" fill="#F8F2E9" opacity="0.85"/></svg><span class="wnum">03</span></div><h3>Cozy space</h3><p>Warm lighting, clean studio and a space you will love to be in.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMS -->
+<section class="programs" id="programs">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow">Classes</span>
+      <h2>Find your <em>flow</em></h2>
+    </div>
+    <div class="prog-grid reveal">
+      <div class="prog"><svg class="art" viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><circle cx="150" cy="170" r="82" fill="#F8F2E9" opacity=".16"/><circle cx="150" cy="170" r="112" fill="none" stroke="#F8F2E9" stroke-width="1.5" opacity=".3"/><path d="M48 59Q48 70 59 70Q48 70 48 81Q48 70 37 70Q48 70 48 59Z" fill="#F8F2E9" opacity="0.85"/><path d="M252 102Q252 110 260 110Q252 110 252 118Q252 110 244 110Q252 110 252 102Z" fill="#F8F2E9" opacity="0.85"/><path d="M232 34Q232 40 238 40Q232 40 232 46Q232 40 226 40Q232 40 232 34Z" fill="#F8F2E9" opacity="0.6"/><circle cx="62" cy="150" r="3.5" fill="#F8F2E9" opacity=".6"/><circle cx="246" cy="196" r="3" fill="#F8F2E9" opacity=".5"/><g fill="#F8F2E9"><rect x="64" y="188" width="172" height="12" rx="6" opacity=".95"/><rect x="44" y="156" width="22" height="76" rx="9"/><rect x="70" y="168" width="16" height="52" rx="7" opacity=".85"/><rect x="234" y="156" width="22" height="76" rx="9"/><rect x="214" y="168" width="16" height="52" rx="7" opacity=".85"/></g><g transform="translate(52 360) scale(1 1)"><path d="M0 0Q-6 -50 6 -100" stroke="#F8F2E9" stroke-width="3" fill="none" opacity=".75" stroke-linecap="round"/><g transform="translate(0 -25) rotate(-55) scale(0.7)"><path d="M0 0Q16 -26 0 -54Q-16 -26 0 0Z" fill="#F8F2E9" opacity="0.7"/></g><g transform="translate(2 -45) rotate(50) scale(0.75)"><path d="M0 0Q16 -26 0 -54Q-16 -26 0 0Z" fill="#F8F2E9" opacity="0.7"/></g><g transform="translate(5 -68) rotate(-45) scale(0.7)"><path d="M0 0Q16 -26 0 -54Q-16 -26 0 0Z" fill="#F8F2E9" opacity="0.7"/></g><g transform="translate(6 -88) rotate(40) scale(0.65)"><path d="M0 0Q16 -26 0 -54Q-16 -26 0 0Z" fill="#F8F2E9" opacity="0.7"/></g></g><g transform="translate(250 360) scale(-1 1)"><path d="M0 0Q-6 -50 6 -100" stroke="#F8F2E9" stroke-width="3" fill="none" opacity=".75" stroke-linecap="round"/><g transform="translate(0 -25) rotate(-55) scale(0.7)"><path d="M0 0Q16 -26 0 -54Q-16 -26 0 0Z" fill="#F8F2E9" opacity="0.7"/></g><g transform="translate(2 -45) rotate(50) scale(0.75)"><path d="M0 0Q16 -26 0 -54Q-16 -26 0 0Z" fill="#F8F2E9" opacity="0.7"/></g><g transform="translate(5 -68) rotate(-45) scale(0.7)"><path d="M0 0Q16 -26 0 -54Q-16 -26 0 0Z" fill="#F8F2E9" opacity="0.7"/></g><g transform="translate(6 -88) rotate(40) scale(0.65)"><path d="M0 0Q16 -26 0 -54Q-16 -26 0 0Z" fill="#F8F2E9" opacity="0.7"/></g></g></svg><img src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?fm=jpg&q=75&w=800&auto=format&fit=crop" alt="" onerror="this.remove()"><h3>Strength</h3><p>Guided weight training for every level.</p></div>
+      <div class="prog"><svg class="art" viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><circle cx="150" cy="170" r="82" fill="#F8F2E9" opacity=".16"/><circle cx="150" cy="170" r="112" fill="none" stroke="#F8F2E9" stroke-width="1.5" opacity=".3"/><path d="M48 59Q48 70 59 70Q48 70 48 81Q48 70 37 70Q48 70 48 59Z" fill="#F8F2E9" opacity="0.85"/><path d="M252 102Q252 110 260 110Q252 110 252 118Q252 110 244 110Q252 110 252 102Z" fill="#F8F2E9" opacity="0.85"/><path d="M232 34Q232 40 238 40Q232 40 232 46Q232 40 226 40Q232 40 232 34Z" fill="#F8F2E9" opacity="0.6"/><circle cx="62" cy="150" r="3.5" fill="#F8F2E9" opacity=".6"/><circle cx="246" cy="196" r="3" fill="#F8F2E9" opacity=".5"/><g fill="#F8F2E9"><circle cx="150" cy="118" r="17"/><path d="M126 196Q150 128 174 196Z" opacity=".95"/><ellipse cx="150" cy="204" rx="64" ry="15"/></g><path d="M134 160Q104 192 126 208M166 160Q196 192 174 208" stroke="#F8F2E9" stroke-width="9" fill="none" stroke-linecap="round" opacity=".9"/><rect x="58" y="228" width="184" height="9" rx="4.5" fill="#F8F2E9" opacity=".4"/><g transform="translate(46 372) scale(1 1)"><path d="M0 0Q-6 -50 6 -100" stroke="#F8F2E9" stroke-width="3" fill="none" opacity=".75" stroke-linecap="round"/><g transform="translate(0 -25) rotate(-55) scale(0.7)"><path d="M0 0Q16 -26 0 -54Q-16 -26 0 0Z" fill="#F8F2E9" opacity="0.7"/></g><g transform="translate(2 -45) rotate(50) scale(0.75)"><path d="M0 0Q16 -26 0 -54Q-16 -26 0 0Z" fill="#F8F2E9" opacity="0.7"/></g><g transform="translate(5 -68) rotate(-45) scale(0.7)"><path d="M0 0Q16 -26 0 -54Q-16 -26 0 0Z" fill="#F8F2E9" opacity="0.7"/></g><g transform="translate(6 -88) rotate(40) scale(0.65)"><path d="M0 0Q16 -26 0 -54Q-16 -26 0 0Z" fill="#F8F2E9" opacity="0.7"/></g></g><g transform="translate(254 372) scale(-1 1)"><path d="M0 0Q-6 -50 6 -100" stroke="#F8F2E9" stroke-width="3" fill="none" opacity=".75" stroke-linecap="round"/><g transform="translate(0 -25) rotate(-55) scale(0.7)"><path d="M0 0Q16 -26 0 -54Q-16 -26 0 0Z" fill="#F8F2E9" opacity="0.7"/></g><g transform="translate(2 -45) rotate(50) scale(0.75)"><path d="M0 0Q16 -26 0 -54Q-16 -26 0 0Z" fill="#F8F2E9" opacity="0.7"/></g><g transform="translate(5 -68) rotate(-45) scale(0.7)"><path d="M0 0Q16 -26 0 -54Q-16 -26 0 0Z" fill="#F8F2E9" opacity="0.7"/></g><g transform="translate(6 -88) rotate(40) scale(0.65)"><path d="M0 0Q16 -26 0 -54Q-16 -26 0 0Z" fill="#F8F2E9" opacity="0.7"/></g></g></svg><img src="https://images.unsplash.com/photo-1764111585854-e447928a6eeb?fm=jpg&q=75&w=800&auto=format&fit=crop" alt="" onerror="this.remove()"><h3>Yoga</h3><p>Stretch, breathe and reset your mind.</p></div>
+      <div class="prog"><svg class="art" viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><circle cx="150" cy="170" r="82" fill="#F8F2E9" opacity=".16"/><circle cx="150" cy="170" r="112" fill="none" stroke="#F8F2E9" stroke-width="1.5" opacity=".3"/><path d="M48 59Q48 70 59 70Q48 70 48 81Q48 70 37 70Q48 70 48 59Z" fill="#F8F2E9" opacity="0.85"/><path d="M252 102Q252 110 260 110Q252 110 252 118Q252 110 244 110Q252 110 252 102Z" fill="#F8F2E9" opacity="0.85"/><path d="M232 34Q232 40 238 40Q232 40 232 46Q232 40 226 40Q232 40 232 34Z" fill="#F8F2E9" opacity="0.6"/><circle cx="62" cy="150" r="3.5" fill="#F8F2E9" opacity=".6"/><circle cx="246" cy="196" r="3" fill="#F8F2E9" opacity=".5"/><circle cx="150" cy="190" r="56" fill="none" stroke="#F8F2E9" stroke-width="9" opacity=".95"/><circle cx="150" cy="190" r="36" fill="none" stroke="#F8F2E9" stroke-width="2" opacity=".35"/><circle cx="224" cy="262" r="26" fill="#F8F2E9" opacity=".55"/><path d="M204 252Q224 240 244 252" stroke="#F8F2E9" stroke-width="2" fill="none" opacity=".6"/><rect x="52" y="306" width="196" height="9" rx="4.5" fill="#F8F2E9" opacity=".4"/><g transform="translate(60 372) scale(1 1)"><path d="M0 0Q-6 -50 6 -100" stroke="#F8F2E9" stroke-width="3" fill="none" opacity=".75" stroke-linecap="round"/><g transform="translate(0 -25) rotate(-55) scale(0.7)"><path d="M0 0Q16 -26 0 -54Q-16 -26 0 0Z" fill="#F8F2E9" opacity="0.7"/></g><g transform="translate(2 -45) rotate(50) scale(0.75)"><path d="M0 0Q16 -26 0 -54Q-16 -26 0 0Z" fill="#F8F2E9" opacity="0.7"/></g><g transform="translate(5 -68) rotate(-45) scale(0.7)"><path d="M0 0Q16 -26 0 -54Q-16 -26 0 0Z" fill="#F8F2E9" opacity="0.7"/></g><g transform="translate(6 -88) rotate(40) scale(0.65)"><path d="M0 0Q16 -26 0 -54Q-16 -26 0 0Z" fill="#F8F2E9" opacity="0.7"/></g></g></svg><img src="https://images.unsplash.com/photo-1747238415033-b74eec07eb59?fm=jpg&q=75&w=800&auto=format&fit=crop" alt="" onerror="this.remove()"><h3>Pilates</h3><p>Core and posture, low impact.</p></div>
+      <div class="prog"><svg class="art" viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><circle cx="150" cy="170" r="82" fill="#F8F2E9" opacity=".16"/><circle cx="150" cy="170" r="112" fill="none" stroke="#F8F2E9" stroke-width="1.5" opacity=".3"/><path d="M48 59Q48 70 59 70Q48 70 48 81Q48 70 37 70Q48 70 48 59Z" fill="#F8F2E9" opacity="0.85"/><path d="M252 102Q252 110 260 110Q252 110 252 118Q252 110 244 110Q252 110 252 102Z" fill="#F8F2E9" opacity="0.85"/><path d="M232 34Q232 40 238 40Q232 40 232 46Q232 40 226 40Q232 40 232 34Z" fill="#F8F2E9" opacity="0.6"/><circle cx="62" cy="150" r="3.5" fill="#F8F2E9" opacity=".6"/><circle cx="246" cy="196" r="3" fill="#F8F2E9" opacity=".5"/><path d="M116 172Q150 96 184 172" stroke="#F8F2E9" stroke-width="15" fill="none" stroke-linecap="round" opacity=".95"/><circle cx="150" cy="212" r="50" fill="#F8F2E9" opacity=".95"/><circle cx="150" cy="212" r="26" fill="none" stroke="#B57A60" stroke-width="3" opacity=".4"/><path d="M36 314Q150 392 264 314" stroke="#F8F2E9" stroke-width="3" fill="none" stroke-dasharray="3 9" stroke-linecap="round" opacity=".6"/><g transform="translate(48 366) scale(1 1)"><path d="M0 0Q-6 -50 6 -100" stroke="#F8F2E9" stroke-width="3" fill="none" opacity=".75" stroke-linecap="round"/><g transform="translate(0 -25) rotate(-55) scale(0.7)"><path d="M0 0Q16 -26 0 -54Q-16 -26 0 0Z" fill="#F8F2E9" opacity="0.7"/></g><g transform="translate(2 -45) rotate(50) scale(0.75)"><path d="M0 0Q16 -26 0 -54Q-16 -26 0 0Z" fill="#F8F2E9" opacity="0.7"/></g><g transform="translate(5 -68) rotate(-45) scale(0.7)"><path d="M0 0Q16 -26 0 -54Q-16 -26 0 0Z" fill="#F8F2E9" opacity="0.7"/></g><g transform="translate(6 -88) rotate(40) scale(0.65)"><path d="M0 0Q16 -26 0 -54Q-16 -26 0 0Z" fill="#F8F2E9" opacity="0.7"/></g></g></svg><img src="https://images.unsplash.com/photo-1782849206110-4a47f5acb1f0?fm=jpg&q=75&w=800&auto=format&fit=crop" alt="" onerror="this.remove()"><h3>Conditioning</h3><p>Circuits and cardio. Sweat and smile.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOD GALLERY -->
+<section id="eat">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow">Fuel</span>
+      <h2>Fuel the <em>glow</em></h2>
+    </div>
+    <div class="gallery reveal">
+      <div class="tile"><svg class="art" viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g transform="rotate(14 215 290)"><rect x="150" y="215" width="160" height="150" rx="8" fill="#FBF6EC" opacity=".6"/><path d="M150 245H310M150 335H310" stroke="#B57A60" stroke-width="2" opacity=".35"/></g><circle cx="156" cy="202" r="112" fill="#33261F" opacity=".13"/><circle cx="150" cy="190" r="112" fill="#FBF6EC"/><circle cx="150" cy="190" r="102" fill="none" stroke="#E2D3C0" stroke-width="2"/><circle cx="150" cy="190" r="88" fill="#6F8760"/><g transform="translate(126.0 251.5) rotate(183.9)"><path d="M0 -25.0Q13.0 0 0 25.0Q-13.0 0 0 -25.0Z" fill="#7D9468"/><path d="M0 -21.0V21.0" stroke="#4F6A45" stroke-width="1.3" opacity=".55"/></g><g transform="translate(100.2 233.3) rotate(207.6)"><path d="M0 -25.0Q13.0 0 0 25.0Q-13.0 0 0 -25.0Z" fill="#A9C08F"/><path d="M0 -21.0V21.0" stroke="#4F6A45" stroke-width="1.3" opacity=".55"/></g><g transform="translate(85.8 205.2) rotate(236.4)"><path d="M0 -25.0Q13.0 0 0 25.0Q-13.0 0 0 -25.0Z" fill="#A9C08F"/><path d="M0 -21.0V21.0" stroke="#4F6A45" stroke-width="1.3" opacity=".55"/></g><g transform="translate(86.1 173.6) rotate(262.3)"><path d="M0 -25.0Q13.0 0 0 25.0Q-13.0 0 0 -25.0Z" fill="#A9C08F"/><path d="M0 -21.0V21.0" stroke="#4F6A45" stroke-width="1.3" opacity=".55"/></g><g transform="translate(101.0 145.8) rotate(297.8)"><path d="M0 -25.0Q13.0 0 0 25.0Q-13.0 0 0 -25.0Z" fill="#7D9468"/><path d="M0 -21.0V21.0" stroke="#4F6A45" stroke-width="1.3" opacity=".55"/></g><g transform="translate(127.2 128.1) rotate(336.5)"><path d="M0 -25.0Q13.0 0 0 25.0Q-13.0 0 0 -25.0Z" fill="#7D9468"/><path d="M0 -21.0V21.0" stroke="#4F6A45" stroke-width="1.3" opacity=".55"/></g><g transform="translate(158.6 124.6) rotate(354.5)"><path d="M0 -25.0Q13.0 0 0 25.0Q-13.0 0 0 -25.0Z" fill="#A9C08F"/><path d="M0 -21.0V21.0" stroke="#4F6A45" stroke-width="1.3" opacity=".55"/></g><g transform="translate(188.0 136.0) rotate(391.4)"><path d="M0 -25.0Q13.0 0 0 25.0Q-13.0 0 0 -25.0Z" fill="#A9C08F"/><path d="M0 -21.0V21.0" stroke="#4F6A45" stroke-width="1.3" opacity=".55"/></g><g transform="translate(208.7 159.9) rotate(404.1)"><path d="M0 -25.0Q13.0 0 0 25.0Q-13.0 0 0 -25.0Z" fill="#8EA678"/><path d="M0 -21.0V21.0" stroke="#4F6A45" stroke-width="1.3" opacity=".55"/></g><g transform="translate(216.0 190.6) rotate(457.1)"><path d="M0 -25.0Q13.0 0 0 25.0Q-13.0 0 0 -25.0Z" fill="#A9C08F"/><path d="M0 -21.0V21.0" stroke="#4F6A45" stroke-width="1.3" opacity=".55"/></g><g transform="translate(208.1 221.2) rotate(500.6)"><path d="M0 -25.0Q13.0 0 0 25.0Q-13.0 0 0 -25.0Z" fill="#A9C08F"/><path d="M0 -21.0V21.0" stroke="#4F6A45" stroke-width="1.3" opacity=".55"/></g><g transform="translate(187.0 244.7) rotate(510.2)"><path d="M0 -25.0Q13.0 0 0 25.0Q-13.0 0 0 -25.0Z" fill="#7D9468"/><path d="M0 -21.0V21.0" stroke="#4F6A45" stroke-width="1.3" opacity=".55"/></g><g transform="translate(157.3 255.6) rotate(557.4)"><path d="M0 -25.0Q13.0 0 0 25.0Q-13.0 0 0 -25.0Z" fill="#7D9468"/><path d="M0 -21.0V21.0" stroke="#4F6A45" stroke-width="1.3" opacity=".55"/></g><g transform="translate(106.9 181.3) rotate(263.0)"><path d="M0 -24.0Q13.0 0 0 24.0Q-13.0 0 0 -24.0Z" fill="#9DB586"/><path d="M0 -20.0V20.0" stroke="#4F6A45" stroke-width="1.3" opacity=".55"/></g><g transform="translate(122.5 155.6) rotate(303.6)"><path d="M0 -24.0Q13.0 0 0 24.0Q-13.0 0 0 -24.0Z" fill="#7D9468"/><path d="M0 -20.0V20.0" stroke="#4F6A45" stroke-width="1.3" opacity=".55"/></g><g transform="translate(151.0 146.0) rotate(364.9)"><path d="M0 -24.0Q13.0 0 0 24.0Q-13.0 0 0 -24.0Z" fill="#A9C08F"/><path d="M0 -20.0V20.0" stroke="#4F6A45" stroke-width="1.3" opacity=".55"/></g><g transform="translate(179.1 157.0) rotate(417.2)"><path d="M0 -24.0Q13.0 0 0 24.0Q-13.0 0 0 -24.0Z" fill="#8EA678"/><path d="M0 -20.0V20.0" stroke="#4F6A45" stroke-width="1.3" opacity=".55"/></g><g transform="translate(193.5 183.4) rotate(421.5)"><path d="M0 -24.0Q13.0 0 0 24.0Q-13.0 0 0 -24.0Z" fill="#A9C08F"/><path d="M0 -20.0V20.0" stroke="#4F6A45" stroke-width="1.3" opacity=".55"/></g><g transform="translate(187.6 212.9) rotate(488.3)"><path d="M0 -24.0Q13.0 0 0 24.0Q-13.0 0 0 -24.0Z" fill="#6F8760"/><path d="M0 -20.0V20.0" stroke="#4F6A45" stroke-width="1.3" opacity=".55"/></g><g transform="translate(164.1 231.7) rotate(501.2)"><path d="M0 -24.0Q13.0 0 0 24.0Q-13.0 0 0 -24.0Z" fill="#7D9468"/><path d="M0 -20.0V20.0" stroke="#4F6A45" stroke-width="1.3" opacity=".55"/></g><g transform="translate(134.0 231.0) rotate(564.6)"><path d="M0 -24.0Q13.0 0 0 24.0Q-13.0 0 0 -24.0Z" fill="#A9C08F"/><path d="M0 -20.0V20.0" stroke="#4F6A45" stroke-width="1.3" opacity=".55"/></g><g transform="translate(111.4 211.1) rotate(586.7)"><path d="M0 -24.0Q13.0 0 0 24.0Q-13.0 0 0 -24.0Z" fill="#A9C08F"/><path d="M0 -20.0V20.0" stroke="#4F6A45" stroke-width="1.3" opacity=".55"/></g><g transform="translate(133.2 200.9) rotate(227.7)"><path d="M0 -22.0Q12.0 0 0 22.0Q-12.0 0 0 -22.0Z" fill="#A9C08F"/><path d="M0 -18.0V18.0" stroke="#4F6A45" stroke-width="1.3" opacity=".55"/></g><g transform="translate(134.5 177.4) rotate(330.2)"><path d="M0 -22.0Q12.0 0 0 22.0Q-12.0 0 0 -22.0Z" fill="#6F8760"/><path d="M0 -18.0V18.0" stroke="#4F6A45" stroke-width="1.3" opacity=".55"/></g><g transform="translate(157.2 171.3) rotate(371.0)"><path d="M0 -22.0Q12.0 0 0 22.0Q-12.0 0 0 -22.0Z" fill="#8EA678"/><path d="M0 -18.0V18.0" stroke="#4F6A45" stroke-width="1.3" opacity=".55"/></g><g transform="translate(170.0 191.0) rotate(462.9)"><path d="M0 -22.0Q12.0 0 0 22.0Q-12.0 0 0 -22.0Z" fill="#8EA678"/><path d="M0 -18.0V18.0" stroke="#4F6A45" stroke-width="1.3" opacity=".55"/></g><g transform="translate(155.2 209.3) rotate(504.1)"><path d="M0 -22.0Q12.0 0 0 22.0Q-12.0 0 0 -22.0Z" fill="#6F8760"/><path d="M0 -18.0V18.0" stroke="#4F6A45" stroke-width="1.3" opacity=".55"/></g><g transform="translate(174 178) rotate(-25)"><path d="M0 -24Q26 0 0 24Q10 0 0 -24Z" fill="#E4EDB0"/><path d="M0 -24Q26 0 0 24" stroke="#5F7F3A" stroke-width="3.5" fill="none" stroke-linecap="round"/></g><g transform="translate(186 196) rotate(5)"><path d="M0 -24Q26 0 0 24Q10 0 0 -24Z" fill="#E4EDB0"/><path d="M0 -24Q26 0 0 24" stroke="#5F7F3A" stroke-width="3.5" fill="none" stroke-linecap="round"/></g><g transform="translate(190 218) rotate(32)"><path d="M0 -24Q26 0 0 24Q10 0 0 -24Z" fill="#E4EDB0"/><path d="M0 -24Q26 0 0 24" stroke="#5F7F3A" stroke-width="3.5" fill="none" stroke-linecap="round"/></g><circle cx="124" cy="184" r="14" fill="#DCE7C4" stroke="#8FAA73" stroke-width="3"/><circle cx="124" cy="184" r="6" fill="none" stroke="#B9CC9B" stroke-width="1.5"/><circle cx="131.0" cy="184.0" r="1.1" fill="#A9BE88"/><circle cx="126.1" cy="190.7" r="1.1" fill="#A9BE88"/><circle cx="118.3" cy="188.1" r="1.1" fill="#A9BE88"/><circle cx="118.4" cy="179.8" r="1.1" fill="#A9BE88"/><circle cx="126.3" cy="177.4" r="1.1" fill="#A9BE88"/><circle cx="144" cy="230" r="14" fill="#DCE7C4" stroke="#8FAA73" stroke-width="3"/><circle cx="144" cy="230" r="6" fill="none" stroke="#B9CC9B" stroke-width="1.5"/><circle cx="151.0" cy="230.0" r="1.1" fill="#A9BE88"/><circle cx="146.1" cy="236.7" r="1.1" fill="#A9BE88"/><circle cx="138.3" cy="234.1" r="1.1" fill="#A9BE88"/><circle cx="138.4" cy="225.8" r="1.1" fill="#A9BE88"/><circle cx="146.3" cy="223.4" r="1.1" fill="#A9BE88"/><circle cx="98" cy="212" r="14" fill="#DCE7C4" stroke="#8FAA73" stroke-width="3"/><circle cx="98" cy="212" r="6" fill="none" stroke="#B9CC9B" stroke-width="1.5"/><circle cx="105.0" cy="212.0" r="1.1" fill="#A9BE88"/><circle cx="100.1" cy="218.7" r="1.1" fill="#A9BE88"/><circle cx="92.3" cy="216.1" r="1.1" fill="#A9BE88"/><circle cx="92.4" cy="207.8" r="1.1" fill="#A9BE88"/><circle cx="100.3" cy="205.4" r="1.1" fill="#A9BE88"/><circle cx="104" cy="142" r="13" fill="#C9553F"/><circle cx="100" cy="138" r="4" fill="#E58A72" opacity=".8"/><path d="M99 131l5 4 5-4" stroke="#5F7F3A" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="186" cy="134" r="13" fill="#C9553F"/><circle cx="182" cy="130" r="4" fill="#E58A72" opacity=".8"/><path d="M181 123l5 4 5-4" stroke="#5F7F3A" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="216" cy="198" r="13" fill="#C9553F"/><circle cx="212" cy="194" r="4" fill="#E58A72" opacity=".8"/><path d="M211 187l5 4 5-4" stroke="#5F7F3A" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="156" cy="246" r="13" fill="#C9553F"/><circle cx="152" cy="242" r="4" fill="#E58A72" opacity=".8"/><path d="M151 235l5 4 5-4" stroke="#5F7F3A" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="86" cy="184" r="13" fill="#C9553F"/><circle cx="82" cy="180" r="4" fill="#E58A72" opacity=".8"/><path d="M81 173l5 4 5-4" stroke="#5F7F3A" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="142" cy="156" r="13" fill="#C9553F"/><circle cx="138" cy="152" r="4" fill="#E58A72" opacity=".8"/><path d="M137 145l5 4 5-4" stroke="#5F7F3A" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="120" cy="160" r="5" fill="#E6C98F"/><circle cx="118.5" cy="158.5" r="1.6" fill="#F4E3B8"/><circle cx="136" cy="212" r="5" fill="#E6C98F"/><circle cx="134.5" cy="210.5" r="1.6" fill="#F4E3B8"/><circle cx="168" cy="148" r="5" fill="#E6C98F"/><circle cx="166.5" cy="146.5" r="1.6" fill="#F4E3B8"/><circle cx="202" cy="160" r="5" fill="#E6C98F"/><circle cx="200.5" cy="158.5" r="1.6" fill="#F4E3B8"/><circle cx="106" cy="236" r="5" fill="#E6C98F"/><circle cx="104.5" cy="234.5" r="1.6" fill="#F4E3B8"/><circle cx="208" cy="234" r="5" fill="#E6C98F"/><circle cx="206.5" cy="232.5" r="1.6" fill="#F4E3B8"/><circle cx="164" cy="198" r="5" fill="#E6C98F"/><circle cx="162.5" cy="196.5" r="1.6" fill="#F4E3B8"/><circle cx="90" cy="220" r="5" fill="#E6C98F"/><circle cx="88.5" cy="218.5" r="1.6" fill="#F4E3B8"/><g transform="translate(246 318) rotate(-30)"><path d="M-30 0A30 30 0 0 1 30 0Z" fill="#F2CD62"/><path d="M-24 0A24 24 0 0 1 24 0Z" fill="#FBE8A6"/><path d="M0 0V-24M0 0L-17 -17M0 0L17 -17M0 0L-23 -7M0 0L23 -7" stroke="#F2CD62" stroke-width="1.6"/></g></svg><span>Garden salads</span></div>
+      <div class="tile"><svg class="art" viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><radialGradient id="gsb" cx="50%" cy="45%" r="60%"><stop offset="0" stop-color="#F3CBC6"/><stop offset="1" stop-color="#DFA09C"/></radialGradient></defs><g transform="rotate(14 215 290)"><rect x="150" y="215" width="160" height="150" rx="8" fill="#FBF6EC" opacity=".6"/><path d="M150 245H310M150 335H310" stroke="#B57A60" stroke-width="2" opacity=".35"/></g><circle cx="156" cy="202" r="112" fill="#33261F" opacity=".13"/><circle cx="150" cy="190" r="112" fill="#FBF6EC"/><circle cx="150" cy="190" r="102" fill="none" stroke="#E2D3C0" stroke-width="2"/><circle cx="150" cy="190" r="88" fill="url(#gsb)"/><circle cx="150" cy="190" r="88" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="2"/><circle cx="117.9" cy="235.9" r="14" fill="#F8EAC2" stroke="#E6CC92" stroke-width="2"/><circle cx="117.9" cy="235.9" r="6" fill="none" stroke="#EAD6A2" stroke-width="1.4"/><circle cx="107.1" cy="226.0" r="14" fill="#F8EAC2" stroke="#E6CC92" stroke-width="2"/><circle cx="107.1" cy="226.0" r="6" fill="none" stroke="#EAD6A2" stroke-width="1.4"/><circle cx="99.2" cy="213.7" r="14" fill="#F8EAC2" stroke="#E6CC92" stroke-width="2"/><circle cx="99.2" cy="213.7" r="6" fill="none" stroke="#EAD6A2" stroke-width="1.4"/><circle cx="94.9" cy="199.7" r="14" fill="#F8EAC2" stroke="#E6CC92" stroke-width="2"/><circle cx="94.9" cy="199.7" r="6" fill="none" stroke="#EAD6A2" stroke-width="1.4"/><circle cx="94.2" cy="185.1" r="14" fill="#F8EAC2" stroke="#E6CC92" stroke-width="2"/><circle cx="94.2" cy="185.1" r="6" fill="none" stroke="#EAD6A2" stroke-width="1.4"/><circle cx="97.4" cy="170.8" r="14" fill="#F8EAC2" stroke="#E6CC92" stroke-width="2"/><circle cx="97.4" cy="170.8" r="6" fill="none" stroke="#EAD6A2" stroke-width="1.4"/><circle cx="104.1" cy="157.9" r="14" fill="#F8EAC2" stroke="#E6CC92" stroke-width="2"/><circle cx="104.1" cy="157.9" r="6" fill="none" stroke="#EAD6A2" stroke-width="1.4"/><g transform="translate(194 156) rotate(20)"><path d="M0 -17C17 -17 19 6 0 22C-19 6 -17 -17 0 -17Z" fill="#D5504A"/><ellipse cx="-7" cy="-6" rx="1.1" ry="1.8" fill="#F7D8A0"/><ellipse cx="5" cy="-8" rx="1.1" ry="1.8" fill="#F7D8A0"/><ellipse cx="-2" cy="0" rx="1.1" ry="1.8" fill="#F7D8A0"/><ellipse cx="8" cy="2" rx="1.1" ry="1.8" fill="#F7D8A0"/><ellipse cx="-8" cy="6" rx="1.1" ry="1.8" fill="#F7D8A0"/><ellipse cx="1" cy="10" rx="1.1" ry="1.8" fill="#F7D8A0"/><ellipse cx="-1" cy="-12" rx="1.1" ry="1.8" fill="#F7D8A0"/><path d="M-9 -16l9 5 9-5-5 8h-8z" fill="#6F8F5A"/></g><g transform="translate(208 192) rotate(-10)"><path d="M0 -17C17 -17 19 6 0 22C-19 6 -17 -17 0 -17Z" fill="#D5504A"/><ellipse cx="-7" cy="-6" rx="1.1" ry="1.8" fill="#F7D8A0"/><ellipse cx="5" cy="-8" rx="1.1" ry="1.8" fill="#F7D8A0"/><ellipse cx="-2" cy="0" rx="1.1" ry="1.8" fill="#F7D8A0"/><ellipse cx="8" cy="2" rx="1.1" ry="1.8" fill="#F7D8A0"/><ellipse cx="-8" cy="6" rx="1.1" ry="1.8" fill="#F7D8A0"/><ellipse cx="1" cy="10" rx="1.1" ry="1.8" fill="#F7D8A0"/><ellipse cx="-1" cy="-12" rx="1.1" ry="1.8" fill="#F7D8A0"/><path d="M-9 -16l9 5 9-5-5 8h-8z" fill="#6F8F5A"/></g><g transform="translate(190 226) rotate(35)"><path d="M0 -17C17 -17 19 6 0 22C-19 6 -17 -17 0 -17Z" fill="#D5504A"/><ellipse cx="-7" cy="-6" rx="1.1" ry="1.8" fill="#F7D8A0"/><ellipse cx="5" cy="-8" rx="1.1" ry="1.8" fill="#F7D8A0"/><ellipse cx="-2" cy="0" rx="1.1" ry="1.8" fill="#F7D8A0"/><ellipse cx="8" cy="2" rx="1.1" ry="1.8" fill="#F7D8A0"/><ellipse cx="-8" cy="6" rx="1.1" ry="1.8" fill="#F7D8A0"/><ellipse cx="1" cy="10" rx="1.1" ry="1.8" fill="#F7D8A0"/><ellipse cx="-1" cy="-12" rx="1.1" ry="1.8" fill="#F7D8A0"/><path d="M-9 -16l9 5 9-5-5 8h-8z" fill="#6F8F5A"/></g><circle cx="144" cy="128" r="8.5" fill="#4F5A8C"/><circle cx="141.5" cy="125.5" r="2.4" fill="#8590C0" opacity=".7"/><circle cx="145" cy="130" r="2" fill="#2E365F"/><circle cx="160" cy="134" r="8.5" fill="#4F5A8C"/><circle cx="157.5" cy="131.5" r="2.4" fill="#8590C0" opacity=".7"/><circle cx="161" cy="136" r="2" fill="#2E365F"/><circle cx="134" cy="140" r="8.5" fill="#4F5A8C"/><circle cx="131.5" cy="137.5" r="2.4" fill="#8590C0" opacity=".7"/><circle cx="135" cy="142" r="2" fill="#2E365F"/><circle cx="152" cy="144" r="8.5" fill="#4F5A8C"/><circle cx="149.5" cy="141.5" r="2.4" fill="#8590C0" opacity=".7"/><circle cx="153" cy="146" r="2" fill="#2E365F"/><circle cx="172" cy="124" r="8.5" fill="#4F5A8C"/><circle cx="169.5" cy="121.5" r="2.4" fill="#8590C0" opacity=".7"/><circle cx="173" cy="126" r="2" fill="#2E365F"/><ellipse cx="118.6" cy="197.4" rx="5.5" ry="2.4" fill="#FFFDF6" transform="rotate(131 118.6 197.4)"/><ellipse cx="140.2" cy="234.4" rx="5.5" ry="2.4" fill="#FFFDF6" transform="rotate(21 140.2 234.4)"/><ellipse cx="125.6" cy="214.7" rx="5.5" ry="2.4" fill="#FFFDF6" transform="rotate(27 125.6 214.7)"/><ellipse cx="146.7" cy="202.1" rx="5.5" ry="2.4" fill="#FFFDF6" transform="rotate(120 146.7 202.1)"/><ellipse cx="149.7" cy="182.6" rx="5.5" ry="2.4" fill="#FFFDF6" transform="rotate(157 149.7 182.6)"/><ellipse cx="138.8" cy="223.8" rx="5.5" ry="2.4" fill="#FFFDF6" transform="rotate(106 138.8 223.8)"/><ellipse cx="134.4" cy="194.6" rx="5.5" ry="2.4" fill="#FFFDF6" transform="rotate(151 134.4 194.6)"/><ellipse cx="163.1" cy="196.5" rx="5.5" ry="2.4" fill="#FFFDF6" transform="rotate(119 163.1 196.5)"/><ellipse cx="170.1" cy="210.9" rx="5.5" ry="2.4" fill="#FFFDF6" transform="rotate(116 170.1 210.9)"/><ellipse cx="175.9" cy="200.7" rx="5.5" ry="2.4" fill="#FFFDF6" transform="rotate(51 175.9 200.7)"/><ellipse cx="130.9" cy="217.0" rx="5.5" ry="2.4" fill="#FFFDF6" transform="rotate(4 130.9 217.0)"/><ellipse cx="142.5" cy="203.4" rx="5.5" ry="2.4" fill="#FFFDF6" transform="rotate(21 142.5 203.4)"/><ellipse cx="172.4" cy="211.5" rx="5.5" ry="2.4" fill="#FFFDF6" transform="rotate(23 172.4 211.5)"/><ellipse cx="148.2" cy="215.3" rx="5.5" ry="2.4" fill="#FFFDF6" transform="rotate(156 148.2 215.3)"/><ellipse cx="161.4" cy="209.4" rx="5.5" ry="2.4" fill="#FFFDF6" transform="rotate(98 161.4 209.4)"/><ellipse cx="168.7" cy="183.3" rx="5.5" ry="2.4" fill="#FFFDF6" transform="rotate(155 168.7 183.3)"/><rect x="146.2" y="226.8" width="7" height="6" rx="2" fill="#C99A63" transform="rotate(32 146.2 226.8)"/><rect x="178.8" y="189.4" width="7" height="6" rx="2" fill="#C99A63" transform="rotate(13 178.8 189.4)"/><rect x="156.9" y="221.0" width="7" height="6" rx="2" fill="#C99A63" transform="rotate(21 156.9 221.0)"/><rect x="123.3" y="212.1" width="7" height="6" rx="2" fill="#C99A63" transform="rotate(23 123.3 212.1)"/><rect x="171.4" y="210.4" width="7" height="6" rx="2" fill="#C99A63" transform="rotate(33 171.4 210.4)"/><rect x="114.8" y="197.6" width="7" height="6" rx="2" fill="#C99A63" transform="rotate(62 114.8 197.6)"/><rect x="122.4" y="207.9" width="7" height="6" rx="2" fill="#C99A63" transform="rotate(60 122.4 207.9)"/><rect x="184.7" y="219.8" width="7" height="6" rx="2" fill="#C99A63" transform="rotate(70 184.7 219.8)"/><rect x="173.6" y="190.9" width="7" height="6" rx="2" fill="#C99A63" transform="rotate(35 173.6 190.9)"/><rect x="140.9" y="215.4" width="7" height="6" rx="2" fill="#C99A63" transform="rotate(57 140.9 215.4)"/><rect x="159.4" y="213.1" width="7" height="6" rx="2" fill="#C99A63" transform="rotate(18 159.4 213.1)"/><rect x="159.9" y="222.9" width="7" height="6" rx="2" fill="#C99A63" transform="rotate(4 159.9 222.9)"/><rect x="162.8" y="210.0" width="7" height="6" rx="2" fill="#C99A63" transform="rotate(9 162.8 210.0)"/><rect x="144.2" y="215.3" width="7" height="6" rx="2" fill="#C99A63" transform="rotate(78 144.2 215.3)"/><circle cx="142.1" cy="183.2" r="1.3" fill="#4B3A33" opacity=".75"/><circle cx="149.7" cy="214.3" r="1.3" fill="#4B3A33" opacity=".75"/><circle cx="144.4" cy="196.5" r="1.3" fill="#4B3A33" opacity=".75"/><circle cx="190.3" cy="133.4" r="1.3" fill="#4B3A33" opacity=".75"/><circle cx="116.9" cy="197.2" r="1.3" fill="#4B3A33" opacity=".75"/><circle cx="156.1" cy="193.7" r="1.3" fill="#4B3A33" opacity=".75"/><circle cx="139.8" cy="205.5" r="1.3" fill="#4B3A33" opacity=".75"/><circle cx="155.3" cy="180.0" r="1.3" fill="#4B3A33" opacity=".75"/><circle cx="215.9" cy="199.6" r="1.3" fill="#4B3A33" opacity=".75"/><circle cx="139.9" cy="188.2" r="1.3" fill="#4B3A33" opacity=".75"/><circle cx="148.2" cy="189.5" r="1.3" fill="#4B3A33" opacity=".75"/><circle cx="82.6" cy="178.1" r="1.3" fill="#4B3A33" opacity=".75"/><circle cx="181.7" cy="153.0" r="1.3" fill="#4B3A33" opacity=".75"/><circle cx="148.2" cy="215.6" r="1.3" fill="#4B3A33" opacity=".75"/><circle cx="176.9" cy="236.8" r="1.3" fill="#4B3A33" opacity=".75"/><circle cx="96.6" cy="179.0" r="1.3" fill="#4B3A33" opacity=".75"/><circle cx="142.5" cy="203.7" r="1.3" fill="#4B3A33" opacity=".75"/><circle cx="175.8" cy="126.1" r="1.3" fill="#4B3A33" opacity=".75"/><circle cx="183.8" cy="144.8" r="1.3" fill="#4B3A33" opacity=".75"/><circle cx="171.4" cy="142.9" r="1.3" fill="#4B3A33" opacity=".75"/><circle cx="155.3" cy="225.8" r="1.3" fill="#4B3A33" opacity=".75"/><circle cx="148.8" cy="191.6" r="1.3" fill="#4B3A33" opacity=".75"/><circle cx="169.3" cy="193.4" r="1.3" fill="#4B3A33" opacity=".75"/><circle cx="147.2" cy="238.4" r="1.3" fill="#4B3A33" opacity=".75"/><circle cx="180.1" cy="181.5" r="1.3" fill="#4B3A33" opacity=".75"/><circle cx="213.7" cy="163.2" r="1.3" fill="#4B3A33" opacity=".75"/><circle cx="174.5" cy="182.8" r="1.3" fill="#4B3A33" opacity=".75"/><circle cx="152.9" cy="205.6" r="1.3" fill="#4B3A33" opacity=".75"/><g transform="translate(142.0 192.0) rotate(-50.0)"><path d="M0 -15.0Q8.0 0 0 15.0Q-8.0 0 0 -15.0Z" fill="#7FA06B"/><path d="M0 -11.0V11.0" stroke="#4F6A45" stroke-width="1.3" opacity=".55"/></g><g transform="translate(154.0 196.0) rotate(20.0)"><path d="M0 -14.0Q7.5 0 0 14.0Q-7.5 0 0 -14.0Z" fill="#8EB079"/><path d="M0 -10.0V10.0" stroke="#4F6A45" stroke-width="1.3" opacity=".55"/></g><g transform="translate(252 300) rotate(35)"><ellipse cx="0" cy="-26" rx="14" ry="19" fill="#D9A58F"/><ellipse cx="0" cy="-28" rx="10" ry="14" fill="#E8BCA8"/><rect x="-3.5" y="-8" width="7" height="62" rx="3.5" fill="#D9A58F"/></g></svg><span>Smoothie bowls</span></div>
+      <div class="tile"><svg class="art" viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><radialGradient id="gmt" cx="50%" cy="45%" r="60%"><stop offset="0" stop-color="#B4C58F"/><stop offset="1" stop-color="#8CA06B"/></radialGradient></defs><g transform="rotate(14 215 290)"><rect x="150" y="215" width="160" height="150" rx="8" fill="#FBF6EC" opacity=".6"/><path d="M150 245H310M150 335H310" stroke="#B57A60" stroke-width="2" opacity=".35"/></g><circle cx="156" cy="202" r="114" fill="#33261F" opacity=".13"/><circle cx="150" cy="190" r="114" fill="#FBF6EC"/><circle cx="150" cy="190" r="104" fill="none" stroke="#E2D3C0" stroke-width="2"/><path d="M84 -4H110A17 17 0 0 1 110 30H84" transform="translate(150 190)" stroke="#FBF6EC" stroke-width="13" fill="none" stroke-linecap="round"/><path d="M84 -4H110A17 17 0 0 1 110 30H84" transform="translate(150 190)" stroke="#E2D3C0" stroke-width="1.5" fill="none" opacity=".8"/><circle cx="154" cy="198" r="82" fill="#33261F" opacity=".12"/><circle cx="150" cy="190" r="82" fill="#FFFDF8"/><circle cx="150" cy="190" r="82" fill="none" stroke="#E2D3C0" stroke-width="2"/><circle cx="150" cy="190" r="68" fill="#EFE6D8"/><circle cx="150" cy="190" r="62" fill="url(#gmt)"/><path transform="translate(150 192) scale(1.0)" d="M0 30C-38 6 -30 -30 0 -14C30 -30 38 6 0 30Z" fill="#F8F0DD" opacity="1"/><path transform="translate(150 192) scale(0.72)" d="M0 30C-38 6 -30 -30 0 -14C30 -30 38 6 0 30Z" fill="#A2B67F" opacity="1"/><path transform="translate(150 192) scale(0.5)" d="M0 30C-38 6 -30 -30 0 -14C30 -30 38 6 0 30Z" fill="#F8F0DD" opacity="1"/><path transform="translate(150 192) scale(0.28)" d="M0 30C-38 6 -30 -30 0 -14C30 -30 38 6 0 30Z" fill="#A2B67F" opacity="1"/><path d="M150 220V242" stroke="#F8F0DD" stroke-width="3" stroke-linecap="round" opacity=".9"/><g transform="translate(250 314)"><circle r="23" fill="#D9B48A"/><circle r="23" fill="none" stroke="#C49A6E" stroke-width="2"/><circle cx="-8" cy="-6" r="3.6" fill="#6B4F3F"/><circle cx="7" cy="-9" r="3" fill="#6B4F3F"/><circle cx="4" cy="7" r="3.8" fill="#6B4F3F"/><circle cx="-9" cy="9" r="2.6" fill="#6B4F3F"/></g><g transform="translate(46 304) rotate(20)"><path d="M0 -10Q9 0 0 10Q-9 0 0 -10Z" fill="#E6B7AC"/></g><g transform="translate(66 326) rotate(-30)"><path d="M0 -10Q9 0 0 10Q-9 0 0 -10Z" fill="#E6B7AC"/></g><g transform="translate(30 332) rotate(60)"><path d="M0 -10Q9 0 0 10Q-9 0 0 -10Z" fill="#E6B7AC"/></g></svg><span>Matcha &amp; tea</span></div>
+      <div class="tile"><svg class="art" viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g transform="rotate(14 215 290)"><rect x="150" y="215" width="160" height="150" rx="8" fill="#FBF6EC" opacity=".6"/><path d="M150 245H310M150 335H310" stroke="#B57A60" stroke-width="2" opacity=".35"/></g><circle cx="156" cy="202" r="112" fill="#33261F" opacity=".13"/><circle cx="150" cy="190" r="112" fill="#FBF6EC"/><circle cx="150" cy="190" r="102" fill="none" stroke="#E2D3C0" stroke-width="2"/><g transform="translate(98 224) rotate(8)"><rect x="-13" y="-13" width="26" height="26" rx="6" fill="#DE8F45"/><rect x="-13" y="-13" width="26" height="14" rx="6" fill="#F0B873"/><path d="M-6 6h8" stroke="#B96E2E" stroke-width="1.6" stroke-linecap="round" opacity=".6"/></g><g transform="translate(122 248) rotate(-12)"><rect x="-13" y="-13" width="26" height="26" rx="6" fill="#DE8F45"/><rect x="-13" y="-13" width="26" height="14" rx="6" fill="#F0B873"/><path d="M-6 6h8" stroke="#B96E2E" stroke-width="1.6" stroke-linecap="round" opacity=".6"/></g><g transform="translate(86 252) rotate(20)"><rect x="-13" y="-13" width="26" height="26" rx="6" fill="#DE8F45"/><rect x="-13" y="-13" width="26" height="14" rx="6" fill="#F0B873"/><path d="M-6 6h8" stroke="#B96E2E" stroke-width="1.6" stroke-linecap="round" opacity=".6"/></g><g transform="translate(144 234) rotate(4)"><rect x="-13" y="-13" width="26" height="26" rx="6" fill="#DE8F45"/><rect x="-13" y="-13" width="26" height="14" rx="6" fill="#F0B873"/><path d="M-6 6h8" stroke="#B96E2E" stroke-width="1.6" stroke-linecap="round" opacity=".6"/></g><circle cx="200.5" cy="236.8" r="3.4" fill="#EFE0B8"/><circle cx="219.3" cy="221.8" r="3.4" fill="#E6D2A3"/><circle cx="172.0" cy="227.2" r="3.4" fill="#EFE0B8"/><circle cx="217.0" cy="236.4" r="3.4" fill="#D9BC82"/><circle cx="201.2" cy="198.5" r="3.4" fill="#D9BC82"/><circle cx="211.1" cy="211.3" r="3.4" fill="#EFE0B8"/><circle cx="182.7" cy="247.3" r="3.4" fill="#EFE0B8"/><circle cx="180.9" cy="235.6" r="3.4" fill="#E6D2A3"/><circle cx="194.0" cy="211.8" r="3.4" fill="#E6D2A3"/><circle cx="218.7" cy="228.0" r="3.4" fill="#D9BC82"/><circle cx="200.0" cy="213.2" r="3.4" fill="#EFE0B8"/><circle cx="220.1" cy="220.9" r="3.4" fill="#D9BC82"/><circle cx="208.4" cy="242.4" r="3.4" fill="#E6D2A3"/><circle cx="225.4" cy="226.6" r="3.4" fill="#EFE0B8"/><circle cx="216.7" cy="239.6" r="3.4" fill="#E6D2A3"/><circle cx="170.4" cy="235.4" r="3.4" fill="#E6D2A3"/><circle cx="209.6" cy="226.4" r="3.4" fill="#EFE0B8"/><circle cx="197.4" cy="246.9" r="3.4" fill="#D9BC82"/><circle cx="169.6" cy="216.5" r="3.4" fill="#E6D2A3"/><circle cx="211.0" cy="214.4" r="3.4" fill="#D9BC82"/><circle cx="181.8" cy="200.9" r="3.4" fill="#EFE0B8"/><circle cx="170.8" cy="237.8" r="3.4" fill="#EFE0B8"/><circle cx="204.0" cy="232.6" r="3.4" fill="#EFE0B8"/><circle cx="215.8" cy="226.3" r="3.4" fill="#E6D2A3"/><circle cx="175.5" cy="207.4" r="3.4" fill="#E6D2A3"/><circle cx="205.7" cy="242.2" r="3.4" fill="#EFE0B8"/><circle cx="201.4" cy="229.1" r="3.4" fill="#EFE0B8"/><circle cx="173.8" cy="221.5" r="3.4" fill="#E6D2A3"/><circle cx="201.3" cy="219.2" r="3.4" fill="#E6D2A3"/><circle cx="191.6" cy="250.0" r="3.4" fill="#EFE0B8"/><circle cx="191.2" cy="225.5" r="3.4" fill="#E6D2A3"/><circle cx="174.0" cy="232.2" r="3.4" fill="#EFE0B8"/><circle cx="185.5" cy="215.7" r="3.4" fill="#D9BC82"/><circle cx="175.1" cy="230.5" r="3.4" fill="#D9BC82"/><circle cx="181.1" cy="223.3" r="3.4" fill="#EFE0B8"/><circle cx="216.7" cy="203.6" r="3.4" fill="#D9BC82"/><circle cx="221.0" cy="210.7" r="3.4" fill="#E6D2A3"/><circle cx="201.9" cy="214.6" r="3.4" fill="#E6D2A3"/><circle cx="182.9" cy="234.6" r="3.4" fill="#EFE0B8"/><circle cx="196.5" cy="232.1" r="3.4" fill="#EFE0B8"/><circle cx="192.6" cy="233.9" r="3.4" fill="#E6D2A3"/><circle cx="218.3" cy="215.0" r="3.4" fill="#D9BC82"/><circle cx="213.6" cy="246.0" r="3.4" fill="#D9BC82"/><circle cx="201.6" cy="252.7" r="3.4" fill="#D9BC82"/><circle cx="205.1" cy="216.0" r="3.4" fill="#EFE0B8"/><circle cx="201.9" cy="213.5" r="3.4" fill="#D9BC82"/><circle cx="215.0" cy="223.2" r="3.4" fill="#D9BC82"/><circle cx="201.7" cy="240.0" r="3.4" fill="#EFE0B8"/><circle cx="184.4" cy="237.0" r="3.4" fill="#D9BC82"/><circle cx="192.2" cy="225.5" r="3.4" fill="#D9BC82"/><circle cx="179.8" cy="222.2" r="3.4" fill="#E6D2A3"/><circle cx="217.8" cy="242.7" r="3.4" fill="#E6D2A3"/><circle cx="205.6" cy="222.3" r="3.4" fill="#D9BC82"/><circle cx="192.1" cy="252.3" r="3.4" fill="#E6D2A3"/><circle cx="194.6" cy="234.7" r="3.4" fill="#D9BC82"/><circle cx="210.4" cy="204.0" r="3.4" fill="#D9BC82"/><circle cx="177.8" cy="236.3" r="3.4" fill="#EFE0B8"/><circle cx="173.3" cy="213.3" r="3.4" fill="#E6D2A3"/><circle cx="191.2" cy="250.4" r="3.4" fill="#E6D2A3"/><circle cx="188.8" cy="227.7" r="3.4" fill="#E6D2A3"/><circle cx="178.1" cy="204.0" r="3.4" fill="#E6D2A3"/><circle cx="185.0" cy="215.1" r="3.4" fill="#D9BC82"/><circle cx="209.1" cy="208.6" r="3.4" fill="#D9BC82"/><circle cx="215.4" cy="223.2" r="3.4" fill="#D9BC82"/><circle cx="191.5" cy="219.7" r="3.4" fill="#EFE0B8"/><circle cx="196.7" cy="233.9" r="3.4" fill="#E6D2A3"/><circle cx="195.1" cy="236.7" r="3.4" fill="#D9BC82"/><circle cx="180.9" cy="208.2" r="3.4" fill="#E6D2A3"/><circle cx="190.7" cy="244.6" r="3.4" fill="#E6D2A3"/><circle cx="192.6" cy="250.7" r="3.4" fill="#D9BC82"/><rect x="187" y="152" width="6" height="16" rx="3" fill="#A9C27F"/><circle cx="183" cy="146" r="9" fill="#6F8F5A"/><circle cx="197" cy="146" r="9" fill="#6F8F5A"/><circle cx="190" cy="139" r="10" fill="#6F8F5A"/><circle cx="187" cy="151" r="8" fill="#7C9C66"/><circle cx="194" cy="151" r="8" fill="#7C9C66"/><rect x="209" y="174" width="6" height="16" rx="3" fill="#A9C27F"/><circle cx="205" cy="168" r="9" fill="#7C9C66"/><circle cx="219" cy="168" r="9" fill="#6F8F5A"/><circle cx="212" cy="161" r="10" fill="#7C9C66"/><circle cx="209" cy="173" r="8" fill="#5F7F4A"/><circle cx="216" cy="173" r="8" fill="#6F8F5A"/><rect x="167" y="138" width="6" height="16" rx="3" fill="#A9C27F"/><circle cx="163" cy="132" r="9" fill="#5F7F4A"/><circle cx="177" cy="132" r="9" fill="#6F8F5A"/><circle cx="170" cy="125" r="10" fill="#7C9C66"/><circle cx="167" cy="137" r="8" fill="#7C9C66"/><circle cx="174" cy="137" r="8" fill="#5F7F4A"/><g transform="translate(122 172) rotate(-22)"><path d="M-46 -6Q-40 -28 -4 -26Q40 -30 48 -4Q50 24 6 28Q-42 30 -46 -6Z" fill="#E8A07C"/><path d="M-34 -8Q-10 -20 30 -12M-38 4Q-10 -6 36 6M-30 16Q0 8 30 18" stroke="#F4C2A4" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M-24 -22L-12 24M-2 -24L10 26M20 -22L30 22" stroke="#A8643F" stroke-width="2.2" stroke-linecap="round" opacity=".55"/></g><circle cx="88" cy="134" r="19" fill="#F2CD62"/><circle cx="88" cy="134" r="15" fill="#FBE8A6"/><path d="M88 134V119M88 134L77 123M88 134L99 123M88 134L74 138M88 134L102 138M88 134L81 147M88 134L95 147" stroke="#F2CD62" stroke-width="1.5"/><g transform="translate(130.0 164.0) rotate(60.0)"><path d="M0 -13.0Q5.0 0 0 13.0Q-5.0 0 0 -13.0Z" fill="#6F8F5A"/><path d="M0 -9.0V9.0" stroke="#3F5A35" stroke-width="1.3" opacity=".55"/></g><g transform="translate(140.0 160.0) rotate(110.0)"><path d="M0 -11.0Q4.5 0 0 11.0Q-4.5 0 0 -11.0Z" fill="#7C9C66"/><path d="M0 -7.0V7.0" stroke="#3F5A35" stroke-width="1.3" opacity=".55"/></g><g transform="translate(262 312) rotate(18)"><rect x="-3" y="-4" width="6" height="64" rx="3" fill="#D8CBB8"/><path d="M-10 -4V-34M-3.5 -4V-36M3.5 -4V-36M10 -4V-34" stroke="#D8CBB8" stroke-width="4" stroke-linecap="round"/></g></svg><span>Balanced plates</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow">Membership</span>
+      <h2>Simple, <em>honest</em> pricing</h2>
+    </div>
+    <div class="plans reveal">
+      <div class="plan">
+        <h3>Monthly</h3>
+        <div class="price">₹999<small>/mo</small></div>
+        <ul><li>Gym access</li><li>Locker room</li><li>Free diet chart</li></ul>
+        <a href="tel:+919123456780" class="btn btn-line">Choose</a>
+      </div>
+      <div class="plan best">
+        <h3>Quarterly</h3>
+        <div class="price">₹2,499<small>/3 mo</small></div>
+        <ul><li>Everything in Monthly</li><li>Group classes</li><li>1 PT session</li></ul>
+        <a href="tel:+919123456780" class="btn btn-line">Most popular</a>
+      </div>
+      <div class="plan">
+        <h3>Yearly</h3>
+        <div class="price">₹7,999<small>/yr</small></div>
+        <ul><li>Everything in Quarterly</li><li>4 PT sessions</li><li>Free merch</li></ul>
+        <a href="tel:+919123456780" class="btn btn-line">Choose</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="padding-top:0">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow">Visit us</span>
+      <h2>Come <em>say hi</em></h2>
+    </div>
+    <div class="info reveal">
+      <div class="box">
+        <h3>Timings</h3>
+        <div class="row"><span>Mon – Sat</span><strong>5:30 AM – 10:00 PM</strong></div>
+        <div class="row"><span>Sunday</span><strong>7:00 AM – 12:00 PM</strong></div>
+      </div>
+      <div class="box">
+        <h3>Find us</h3>
+        <p class="ci"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><span>14 Maple Lane, Gandhi Nagar,<br>Jammu 180004</span></p>
+        <p class="ci"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg><span>+91 91234 56780</span></p>
+        <p class="ci"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 7.5l8.5 6 8.5-6"/></svg><span>hello@bloomandbarbell.in</span></p>
+        <br>
+        <a href="tel:+919123456780" class="btn btn-dark">Call now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="cta reveal">
+      <h2>Your first class is on us</h2>
+      <p>Come as you are. We will take care of the rest.</p>
+      <a href="tel:+919123456780" class="btn btn-dark">Claim free trial</a>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 Bloom &amp; Barbell. Website demo by Rumii. Photos from Unsplash.</footer>
+
+<script>
+  // fade-in on scroll
+  const io = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target);} }), {threshold:.15});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
