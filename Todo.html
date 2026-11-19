@@ -3,263 +3,187 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- todo version 3 -->
 <title>My To-Do List</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,500&family=Quicksand:wght@500;600;700&display=swap');
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  html, body {
-    overflow-x: hidden;
-    width: 100%;
+  :root{
+    --bg:#F6F2EA;
+    --paper:#FFFDF9;
+    --blue:#6F93B8;
+    --blue-d:#4C79A8;
+    --sky:#CFE0F0;
+    --blush:#F6D3CE;
+    --butter:#F3E2B5;
+    --ink:#26323F;
+    --dim:#6D7B89;
+    --line:#DDE6EE;
   }
+
+  html, body { overflow-x: hidden; width: 100%; }
 
   body {
-    /* Peaceful sky-like gradient — soft blue to lavender to soft pink, very gentle */
-    background: linear-gradient(160deg, #dbe9f4 0%, #e6e6f7 40%, #f3e8f0 75%, #f7ecec 100%);
+    background-color: var(--bg);
+    background-image: radial-gradient(rgba(111,147,184,.28) 1.3px, transparent 1.4px);
+    background-size: 26px 26px;
     min-height: 100vh;
-    font-family: 'Inter', sans-serif;
-    color: #2c2c34;
+    font-family: 'Quicksand', sans-serif;
+    color: var(--ink);
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    padding: 60px 20px;
+    padding: 90px 20px 150px;
   }
 
+  .wrap{position:relative;width:100%;max-width:470px}
+
+  /* cozy decorations */
+  .deco{position:absolute;pointer-events:none}
+  .cup{width:92px;height:92px;right:-30px;top:-74px;z-index:3;transform:rotate(6deg)}
+  .steam{stroke:var(--blue);stroke-width:2.5;fill:none;stroke-linecap:round;opacity:.7;animation:steam 3s ease-in-out infinite}
+  .steam.s2{animation-delay:1.2s}
+  @keyframes steam{50%{transform:translateY(-4px);opacity:.3}}
+  .cloud{width:84px;height:50px;left:-30px;bottom:-44px;z-index:3;transform:rotate(-8deg)}
+  .star{width:22px;height:22px;fill:var(--blue)}
+  .st1{left:30px;top:-44px;transform:rotate(-10deg)}
+  .st2{width:14px;height:14px;right:84px;bottom:-34px;opacity:.7}
+
+  /* a sticky note behind the notebook showing today's date */
+  .sticky{position:absolute;right:18px;bottom:-96px;width:116px;background:var(--butter);border-radius:6px 6px 22px 6px;padding:13px 14px 16px;transform:rotate(5deg);box-shadow:0 10px 20px rgba(38,50,63,.12);z-index:0}
+  .sticky small{display:block;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--blue-d)}
+  .sticky b{font-family:'Lora',serif;font-size:19px;font-weight:600;color:var(--ink);line-height:1.2}
+
+  /* spiral notebook */
   .app {
-    background: #fdfdfb;
-    width: 100%;
-    max-width: 440px;
-    border-radius: 18px;
-    padding: 36px;
-    box-shadow: 0 20px 45px rgba(60,20,90,0.10);
+    background: var(--paper);
+    border-radius: 12px 12px 26px 26px;
+    padding: 54px 34px 34px 34px;
+    box-shadow: 0 22px 44px rgba(38,50,63,0.13), 0 3px 0 #E7DFD0, 0 8px 0 var(--paper), 0 9px 0 #E7DFD0;
     position: relative;
-    overflow: hidden;
-    border: 1px solid rgba(0,0,0,0.05);
+    z-index:1;
   }
+  .rings{position:absolute;top:-14px;left:0;right:0;height:28px;display:flex;justify-content:space-evenly;padding:0 22px}
+  .rings i{width:13px;height:28px;border-radius:8px;background:linear-gradient(90deg,#8FA6BC,#E4ECF3 45%,#8FA6BC);box-shadow:0 3px 5px rgba(38,50,63,.25);position:relative}
+  .rings i::after{content:"";position:absolute;left:50%;top:18px;width:9px;height:9px;border-radius:50%;background:var(--bg);transform:translateX(-50%);box-shadow:inset 0 1px 2px rgba(38,50,63,.3)}
 
-  /* Thin purple-pink-orange accent line at top — the theme colour comes back here */
-  .app::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 5px;
-    background: linear-gradient(90deg, #7b5cff, #ff6ec4, #ffb84d);
-  }
+  .header-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; gap: 10px; flex-wrap: wrap; }
 
-  .header-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-top: 8px;
-    margin-bottom: 4px;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
+  h1 { font-family: 'Lora', serif; font-size: 34px; font-weight: 600; font-style: italic; letter-spacing: -0.3px; color: var(--ink); }
+  h1 span { color: var(--blue); }
 
-  h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 28px;
-    font-weight: 700;
-    letter-spacing: -0.3px;
-    color: #2c2c34;
-  }
-  h1 span { color: #ff6ec4; }
+  .count-badge { background: var(--sky); color: var(--blue-d); font-weight: 700; font-size: 13px; padding: 7px 15px; border-radius: 20px; white-space: nowrap; flex-shrink: 0; }
 
-  .count-badge {
-    background: linear-gradient(135deg, #7b5cff, #ff6ec4);
-    color: #fff;
-    font-weight: 600;
-    font-size: 12.5px;
-    padding: 7px 14px;
-    border-radius: 20px;
-    white-space: nowrap;
-    letter-spacing: 0.3px;
-    flex-shrink: 0;
-  }
+  .subtitle { color: var(--dim); font-size: 14.5px; margin-bottom: 22px; font-weight: 600; }
 
-  .subtitle {
-    color: #8a8a94;
-    font-size: 13.5px;
-    margin-bottom: 22px;
-    font-weight: 500;
-  }
+  .progress-track { height: 9px; background: var(--line); border-radius: 10px; margin-bottom: 26px; overflow: hidden; }
+  .progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #9DBDDB, var(--blue-d)); border-radius: 10px; transition: width 0.35s ease; }
 
-  .progress-track {
-    height: 6px;
-    background: #edece7;
-    border-radius: 10px;
-    margin-bottom: 26px;
-    overflow: hidden;
-  }
-  .progress-fill {
-    height: 100%;
-    width: 0%;
-    background: linear-gradient(90deg, #7b5cff, #ff6ec4);
-    border-radius: 10px;
-    transition: width 0.35s ease;
-  }
-
-  .input-row {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 24px;
-  }
+  .input-row { display: flex; gap: 8px; margin-bottom: 14px; }
 
   #taskInput {
-    flex: 1;
-    min-width: 0;
-    padding: 13px 16px;
-    border: 1.5px solid #e4e2db;
-    border-radius: 10px;
-    font-size: 14.5px;
-    font-family: 'Inter', sans-serif;
-    font-weight: 500;
-    outline: none;
-    transition: border-color 0.2s;
-    background: #faf9f6;
+    flex: 1; min-width: 0; padding: 14px 18px;
+    border: 2px solid var(--line); border-radius: 14px;
+    font-size: 15px; font-family: 'Quicksand', sans-serif; font-weight: 600;
+    outline: none; transition: border-color 0.2s, box-shadow .2s;
+    background: #FBFCFD; color: var(--ink);
   }
-  #taskInput:focus { border-color: #b08d57; background: #fff; }
+  #taskInput::placeholder{color:#A3B1BF}
+  #taskInput:focus { border-color: var(--blue); background: #fff; box-shadow:0 0 0 4px rgba(111,147,184,.18); }
 
   #addBtn {
-    background: linear-gradient(135deg, #7b5cff, #ff6ec4);
-    color: #fff;
-    border: none;
-    padding: 0 22px;
-    border-radius: 10px;
-    font-weight: 700;
-    cursor: pointer;
-    font-size: 20px;
-    transition: transform 0.15s;
-    box-shadow: 0 6px 16px rgba(123,92,255,0.3);
-    flex-shrink: 0;
+    background: var(--blue-d); color: #fff; border: none; width: 52px; border-radius: 14px;
+    cursor: pointer; transition: transform 0.15s, background .2s;
+    box-shadow: 0 8px 16px rgba(76,121,168,0.32); flex-shrink: 0;
+    display:flex;align-items:center;justify-content:center;
   }
-  #addBtn:hover { transform: translateY(-1px) scale(1.02); }
-  #addBtn:active { transform: scale(0.96); }
+  #addBtn svg{width:22px;height:22px;stroke:#fff;stroke-width:2.6;fill:none;stroke-linecap:round}
+  #addBtn:hover { background: #3C6694; transform: translateY(-1px); }
+  #addBtn:active { transform: scale(0.95); }
 
+  /* ruled notebook lines */
   ul { list-style: none; }
-
   li {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 13px 6px;
-    border-bottom: 1px solid #f0efe9;
+    display: flex; align-items: center; gap: 12px;
+    padding: 0 2px; min-height: 54px;
+    border-bottom: 2px solid var(--line);
     animation: fadeIn 0.25s ease;
   }
-  li:last-child { border-bottom: none; }
+  @keyframes fadeIn { 0% { opacity: 0; transform: translateY(-4px); } 100% { opacity: 1; transform: translateY(0); } }
 
-  @keyframes fadeIn {
-    0% { opacity: 0; transform: translateY(-4px); }
-    100% { opacity: 1; transform: translateY(0); }
-  }
-
-  .dot {
-    width: 9px; height: 9px; border-radius: 50%;
-    flex-shrink: 0;
-  }
+  .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
 
   .checkbox {
-    width: 21px;
-    height: 21px;
-    border: 2px solid #c9c5b8;
-    border-radius: 5px;
-    flex-shrink: 0;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    color: #fff;
-    font-weight: 800;
-    transition: all 0.18s ease;
+    width: 24px; height: 24px; border: 2px solid #B7C8D8; border-radius: 8px; flex-shrink: 0;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: all 0.18s ease; background:#fff;
   }
-  .checkbox.checked {
-    background: linear-gradient(135deg, #7b5cff, #ff6ec4);
-    border-color: #ff6ec4;
-  }
+  .checkbox svg{width:13px;height:13px;stroke:#fff;stroke-width:3.2;fill:none;stroke-linecap:round;stroke-linejoin:round;opacity:0;transition:.18s}
+  .checkbox.checked { background: var(--blue-d); border-color: var(--blue-d); }
+  .checkbox.checked svg{opacity:1}
 
-  .task-text {
-    flex: 1;
-    font-size: 15px;
-    font-weight: 500;
-    cursor: pointer;
-    word-break: break-word;
-    color: #2c2c34;
-  }
-  .task-text.done {
-    text-decoration: line-through;
-    color: #b6b3a8;
-  }
+  .task-text { flex: 1; font-size: 16px; font-weight: 600; cursor: pointer; word-break: break-word; color: var(--ink); transition:.2s }
+  .task-text.done { text-decoration: line-through; text-decoration-color: var(--blue); color: #A8B6C3; }
 
-  .delete-btn {
-    background: none;
-    border: none;
-    color: #d4d1c6;
-    font-size: 17px;
-    cursor: pointer;
-    line-height: 1;
-    padding: 4px;
-    font-weight: 700;
-    transition: color 0.15s;
-    flex-shrink: 0;
-  }
-  .delete-btn:hover { color: #b03a3a; }
+  .delete-btn { background: none; border: none; cursor: pointer; padding: 6px; line-height: 0; flex-shrink: 0; border-radius:8px; transition: background .15s; }
+  .delete-btn svg{width:14px;height:14px;stroke:#B7C8D8;stroke-width:2.6;fill:none;stroke-linecap:round;transition:.15s}
+  .delete-btn:hover{background:var(--blush)}
+  .delete-btn:hover svg{stroke:#B0505A}
 
-  .empty-msg {
-    text-align: center;
-    color: #b3b0a4;
-    font-size: 13.5px;
-    padding: 30px 0 6px;
-    font-weight: 500;
-  }
-  .empty-msg .icon {
-    font-size: 32px;
-    display: block;
-    margin-bottom: 10px;
-    opacity: 0.6;
-  }
+  .empty-msg { text-align: center; color: #98A8B8; font-size: 14.5px; padding: 26px 0 6px; font-weight: 600; }
+  .empty-msg svg { width:60px;height:60px;display:block;margin:0 auto 10px; }
 
-  .celebrate {
-    text-align: center;
-    padding: 8px 0 4px;
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    font-size: 14.5px;
-    color: #ff6ec4;
-    display: none;
-  }
+  .celebrate { text-align: center; padding: 12px 0 2px; font-family: 'Lora', serif; font-style: italic; font-weight: 600; font-size: 17px; color: var(--blue-d); display: none; align-items:center; justify-content:center; gap:8px; }
+  .celebrate svg{width:15px;height:15px;fill:var(--blue)}
 
-  /* Extra breathing room fix for small phones */
-  @media (max-width: 420px) {
-    body { padding: 40px 14px; }
-    .app { padding: 26px 20px; }
-    h1 { font-size: 24px; }
-    #addBtn { padding: 0 18px; font-size: 18px; }
+  .back-portfolio{position:fixed;left:18px;bottom:18px;z-index:99999;display:inline-flex;align-items:center;gap:8px;padding:11px 20px 11px 14px;border-radius:50px;background:#26323F;color:#fff;font:700 14px/1 'Quicksand',sans-serif;text-decoration:none;box-shadow:0 8px 22px rgba(0,0,0,.25);transition:.2s}
+  .back-portfolio:hover{transform:translateX(-3px);background:var(--blue-d)}
+  .back-portfolio svg{width:18px;height:18px;fill:none;stroke:#fff;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+
+  @media (max-width: 480px) {
+    body { padding: 84px 14px 160px; }
+    .app { padding: 50px 22px 26px; }
+    h1 { font-size: 29px; }
+    .cup{width:74px;height:74px;right:-6px;top:-52px}
+    .cloud{display:none}
+    .sticky{right:12px;width:104px}
   }
 </style>
 </head>
 <body>
 
-<div class="app">
-  <div class="header-row">
-    <h1>My Tasks<span>.</span></h1>
-    <div class="count-badge" id="countBadge">0 left</div>
-  </div>
-  <p class="subtitle">Stay organized, stay ahead.</p>
+<a class="back-portfolio" href="index.html" aria-label="Back to portfolio"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>Back to portfolio</a>
 
-  <div class="progress-track">
-    <div class="progress-fill" id="progressFill"></div>
-  </div>
+<div class="wrap">
+  <svg class="deco cup" viewBox="0 0 100 100"><g class="steam"><path d="M38 24q-6-7 0-13M52 24q-6-7 0-13" fill="none"/></g><g stroke="#26323F" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"><path d="M22 36h50v26a22 22 0 0 1-22 22h-6a22 22 0 0 1-22-22z" fill="#CFE0F0"/><path d="M72 42h6a9 9 0 0 1 0 18h-8" fill="none"/><path d="M12 90h70" fill="none"/><path d="M30 50q16 8 34 0" fill="none" stroke="#6F93B8"/></g></svg>
+  <svg class="deco cloud" viewBox="0 0 100 60"><path d="M24 50a15 15 0 0 1 2-30 20 20 0 0 1 38-3 17 17 0 0 1 14 33z" fill="#fff" stroke="#6F93B8" stroke-width="2.5" stroke-linejoin="round"/></svg>
+  <svg class="deco star st1" viewBox="0 0 24 24"><path d="M12 1c1 6 5 10 11 11-6 1-10 5-11 11-1-6-5-10-11-11 6-1 10-5 11-11z"/></svg>
+  <svg class="deco star st2" viewBox="0 0 24 24"><path d="M12 1c1 6 5 10 11 11-6 1-10 5-11 11-1-6-5-10-11-11 6-1 10-5 11-11z"/></svg>
+  <div class="sticky"><small>Today</small><b id="todayDate">&nbsp;</b></div>
 
-  <div class="input-row">
-    <input type="text" id="taskInput" placeholder="Add a new task...">
-    <button id="addBtn">+</button>
-  </div>
+  <div class="app">
+    <div class="rings"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="header-row">
+      <h1>My Tasks<span>.</span></h1>
+      <div class="count-badge" id="countBadge">0 left</div>
+    </div>
+    <p class="subtitle">Stay organized, stay ahead.</p>
 
-  <ul id="taskList"></ul>
-  <p class="empty-msg" id="emptyMsg"><span class="icon">🎉</span>No tasks yet — add your first one!</p>
-  <p class="celebrate" id="celebrateMsg">🎊 Amazing! Everything's done!</p>
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <div class="input-row">
+      <input type="text" id="taskInput" placeholder="Add a new task...">
+      <button id="addBtn" aria-label="Add task"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
+    </div>
+
+    <ul id="taskList"></ul>
+    <p class="empty-msg" id="emptyMsg"><svg viewBox="0 0 100 100"><g stroke="#6F93B8" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"><rect x="22" y="14" width="56" height="72" rx="8" fill="#CFE0F0"/><path d="M34 38h32M34 52h32M34 66h20" fill="none"/></g></svg>No tasks yet, add your first one!</p>
+    <p class="celebrate" id="celebrateMsg"><svg viewBox="0 0 24 24"><path d="M12 1c1 6 5 10 11 11-6 1-10 5-11 11-1-6-5-10-11-11 6-1 10-5 11-11z"/></svg>Amazing! Everything's done!<svg viewBox="0 0 24 24"><path d="M12 1c1 6 5 10 11 11-6 1-10 5-11 11-1-6-5-10-11-11 6-1 10-5 11-11z"/></svg></p>
+  </div>
 </div>
 
 <script>
@@ -268,7 +192,6 @@
      ============================================ */
 
   // Step 1: "Grab" the HTML elements we need to work with.
-  // document.getElementById() finds an element by its id="..." attribute.
   const taskInput   = document.getElementById('taskInput');   // the text box
   const addBtn      = document.getElementById('addBtn');      // the "+" button
   const taskList    = document.getElementById('taskList');    // the <ul> list
@@ -278,15 +201,14 @@
   const celebrateMsg= document.getElementById('celebrateMsg');// "all done" message
 
   // Step 2: A function that recalculates counts/progress every time something changes.
-  // We call this after every add / check / delete action.
   function updateStats() {
-    const items = taskList.querySelectorAll('li');           // all task rows
-    const total = items.length;                               // how many tasks total
-    const done  = taskList.querySelectorAll('.task-text.done').length; // how many are checked
-    const left  = total - done;                                // how many remain
+    const items = taskList.querySelectorAll('li');                     // all task rows
+    const total = items.length;                                         // how many tasks total
+    const done  = taskList.querySelectorAll('.task-text.done').length;  // how many are checked
+    const left  = total - done;                                         // how many remain
 
     emptyMsg.style.display     = total === 0 ? 'block' : 'none';
-    celebrateMsg.style.display = (total > 0 && left === 0) ? 'block' : 'none';
+    celebrateMsg.style.display = (total > 0 && left === 0) ? 'flex' : 'none';
     countBadge.textContent     = left + ' left';
 
     // Progress bar width = percentage of tasks completed
@@ -294,47 +216,52 @@
   }
 
   // Colours the little dot will cycle through for each new task
-  const dotColors = ['#7b5cff', '#ff6ec4', '#ffb84d', '#35d0a0'];
+  const dotColors = ['#6F93B8', '#F0B8B0', '#E8CF8F', '#9CC3CF'];
   let colorIndex = 0;
+
+  // SVG icons used inside the buttons
+  const checkIcon  = '<svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>';
+  const deleteIcon = '<svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>';
 
   // Step 3: Function that runs when user wants to add a task.
   function addTask() {
     const text = taskInput.value.trim(); // .trim() removes extra spaces
     if (text === '') return;             // don't add empty tasks
 
-    // Create a new <li> element from scratch
     const li = document.createElement('li');
 
-    // Create the small coloured dot before each task
     const dot = document.createElement('div');
     dot.className = 'dot';
     dot.style.background = dotColors[colorIndex % dotColors.length];
-    colorIndex++; // move to next colour for the next task added
+    colorIndex++;
 
-    // Create the checkbox div
     const checkbox = document.createElement('div');
     checkbox.className = 'checkbox';
-    checkbox.innerHTML = '&#10003;'; // checkmark symbol (hidden until checked, shown via color)
+    checkbox.innerHTML = checkIcon;
 
-    // Create the text span
     const span = document.createElement('span');
     span.className = 'task-text';
     span.textContent = text; // safely inserts text (prevents HTML injection)
 
-    // Create the delete (✕) button
     const deleteBtn = document.createElement('button');
     deleteBtn.className = 'delete-btn';
-    deleteBtn.innerHTML = '&#10005;';
+    deleteBtn.setAttribute('aria-label', 'Delete task');
+    deleteBtn.innerHTML = deleteIcon;
 
     // Step 4: Event listeners — code that runs "when this happens"
-    // When checkbox is clicked: toggle the "checked"/"done" classes, then update stats
     checkbox.addEventListener('click', function() {
       checkbox.classList.toggle('checked');
       span.classList.toggle('done');
       updateStats();
     });
 
-    // When ✕ is clicked: remove this task from the page
+    // Clicking the task text also ticks it
+    span.addEventListener('click', function() {
+      checkbox.classList.toggle('checked');
+      span.classList.toggle('done');
+      updateStats();
+    });
+
     deleteBtn.addEventListener('click', function() {
       li.remove();
       updateStats();
@@ -347,7 +274,7 @@
     li.appendChild(deleteBtn);
     taskList.appendChild(li);
 
-    taskInput.value = ''; // clear the input box
+    taskInput.value = '';
     updateStats();
   }
 
@@ -358,6 +285,9 @@
   taskInput.addEventListener('keypress', function(e) {
     if (e.key === 'Enter') addTask();
   });
+
+  // Show today's date on the sticky note
+  document.getElementById('todayDate').textContent = new Date().toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' });
 
   // Run once at the start so the empty message shows correctly
   updateStats();
