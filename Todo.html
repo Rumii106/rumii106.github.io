@@ -3,7 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- todo version 3 -->
+<meta name="theme-color" content="#F6F2EA">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="My Tasks">
+<!-- todo version 4 -->
 <title>My To-Do List</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,500&family=Quicksand:wght@500;600;700&display=swap');
@@ -213,6 +217,26 @@
 
     // Progress bar width = percentage of tasks completed
     progressFill.style.width = total === 0 ? '0%' : (done / total * 100) + '%';
+
+    saveTasks(); // keep the list saved on this phone/browser
+  }
+
+  // ---- Saving: tasks stay even after you close or refresh the page ----
+  function saveTasks() {
+    try {
+      const data = [];
+      taskList.querySelectorAll('li').forEach(function(li) {
+        data.push({ text: li.querySelector('.task-text').textContent, done: li.querySelector('.task-text').classList.contains('done') });
+      });
+      localStorage.setItem('rumii-todo-tasks', JSON.stringify(data));
+    } catch (e) { /* if saving is blocked, the app still works */ }
+  }
+
+  function loadTasks() {
+    try {
+      const data = JSON.parse(localStorage.getItem('rumii-todo-tasks') || '[]');
+      data.forEach(function(t) { createTask(t.text, t.done); });
+    } catch (e) { }
   }
 
   // Colours the little dot will cycle through for each new task
@@ -224,9 +248,7 @@
   const deleteIcon = '<svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>';
 
   // Step 3: Function that runs when user wants to add a task.
-  function addTask() {
-    const text = taskInput.value.trim(); // .trim() removes extra spaces
-    if (text === '') return;             // don't add empty tasks
+  function createTask(text, isDone) {
 
     const li = document.createElement('li');
 
@@ -268,12 +290,20 @@
     });
 
     // Step 5: Put the pieces together and add to the page
+    if (isDone) { checkbox.classList.add('checked'); span.classList.add('done'); }
+
     li.appendChild(dot);
     li.appendChild(checkbox);
     li.appendChild(span);
     li.appendChild(deleteBtn);
     taskList.appendChild(li);
+  }
 
+  // Runs when the user adds a new task
+  function addTask() {
+    const text = taskInput.value.trim(); // .trim() removes extra spaces
+    if (text === '') return;             // don't add empty tasks
+    createTask(text, false);
     taskInput.value = '';
     updateStats();
   }
@@ -289,7 +319,8 @@
   // Show today's date on the sticky note
   document.getElementById('todayDate').textContent = new Date().toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' });
 
-  // Run once at the start so the empty message shows correctly
+  // Load saved tasks, then run once so the counts and messages are correct
+  loadTasks();
   updateStats();
 </script>
 </body>
