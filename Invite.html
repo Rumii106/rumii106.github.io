@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- invite version 3 -->
+<!-- invite version 4 -->
 <title>You are invited | Invitation Page</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -131,6 +131,8 @@
   .pol:nth-child(1) .ph{background:linear-gradient(#F8D3DB,#FBE8EC)}
   .pol:nth-child(2) .ph{background:linear-gradient(#DCCBEF,#EFE6F8)}
   .pol:nth-child(3) .ph{background:linear-gradient(#F7E6C4,#FCF3E0)}
+  .pol .ph{position:relative}
+  .pol .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
   .pol svg.art{width:130px;height:130px}
   .pol p{text-align:center;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);margin-top:12px;font-weight:500}
   .pin{position:absolute;top:-9px;left:50%;width:16px;height:16px;margin-left:-8px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff 0 12%,#E9A9BC 14%,#C77A8F);box-shadow:0 3px 5px rgba(0,0,0,.2)}
@@ -186,9 +188,9 @@
   <div class="wrap">
     <div class="head"><p class="small">The mood</p><h2>A little moodboard</h2></div>
     <div class="board">
-      <div class="pol"><span class="pin"></span><div class="ph"><svg class="art" viewBox="0 0 100 100"><g stroke="#5B3F73" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"><rect x="22" y="52" width="56" height="30" rx="6" fill="#FFFDF9"/><path d="M22 62q7 8 14 0t14 0 14 0 14 0" fill="#F8D3DB"/><rect x="32" y="36" width="36" height="16" rx="5" fill="#F8D3DB"/><path d="M50 36v-9" /><path d="M50 18c4 4 4 8 0 9-4-1-4-5 0-9z" fill="#F7E6C4"/><circle cx="40" cy="72" r="2" fill="#C77A8F" stroke="none"/><circle cx="60" cy="72" r="2" fill="#C77A8F" stroke="none"/></g></svg></div><p>Cake and candles</p></div>
-      <div class="pol"><span class="pin"></span><div class="ph"><svg class="art" viewBox="0 0 100 100"><g stroke="#5B3F73" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"><path d="M50 86V52M50 70q-14-4-16-16M50 64q14-4 16-14" fill="none" stroke="#7FA37F"/><g fill="#FFFDF9"><ellipse cx="50" cy="26" rx="9" ry="15"/><ellipse cx="50" cy="26" rx="9" ry="15" transform="rotate(72 50 42)"/><ellipse cx="50" cy="26" rx="9" ry="15" transform="rotate(144 50 42)"/><ellipse cx="50" cy="26" rx="9" ry="15" transform="rotate(216 50 42)"/><ellipse cx="50" cy="26" rx="9" ry="15" transform="rotate(288 50 42)"/></g><circle cx="50" cy="42" r="8" fill="#F7E6C4"/></g></svg></div><p>Soft flowers</p></div>
-      <div class="pol"><span class="pin"></span><div class="ph"><svg class="art" viewBox="0 0 100 100"><g stroke="#5B3F73" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"><path d="M38 92c4-14-6-20 2-32" fill="none"/><path d="M64 92c-4-14 6-18-2-30" fill="none"/><ellipse cx="38" cy="34" rx="18" ry="22" fill="#F8D3DB"/><path d="M38 56l-3 5h6z" fill="#F8D3DB"/><ellipse cx="64" cy="40" rx="16" ry="20" fill="#DCCBEF"/><path d="M64 60l-3 5h6z" fill="#DCCBEF"/><path d="M30 24q3-6 9-7" fill="none" stroke="#fff"/></g></svg></div><p>Pastel balloons</p></div>
+      <div class="pol"><span class="pin"></span><div class="ph"><svg class="art" viewBox="0 0 100 100"><g stroke="#5B3F73" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"><rect x="22" y="52" width="56" height="30" rx="6" fill="#FFFDF9"/><path d="M22 62q7 8 14 0t14 0 14 0 14 0" fill="#F8D3DB"/><rect x="32" y="36" width="36" height="16" rx="5" fill="#F8D3DB"/><path d="M50 36v-9" /><path d="M50 18c4 4 4 8 0 9-4-1-4-5 0-9z" fill="#F7E6C4"/><circle cx="40" cy="72" r="2" fill="#C77A8F" stroke="none"/><circle cx="60" cy="72" r="2" fill="#C77A8F" stroke="none"/></g></svg><img src="https://images.unsplash.com/photo-1553135422-400ee5852b27?fm=jpg&q=75&w=500&auto=format&fit=crop" alt="Cupcake with a candle" loading="lazy" onerror="this.remove()"></div><p>Cake and candles</p></div>
+      <div class="pol"><span class="pin"></span><div class="ph"><svg class="art" viewBox="0 0 100 100"><g stroke="#5B3F73" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"><path d="M50 86V52M50 70q-14-4-16-16M50 64q14-4 16-14" fill="none" stroke="#7FA37F"/><g fill="#FFFDF9"><ellipse cx="50" cy="26" rx="9" ry="15"/><ellipse cx="50" cy="26" rx="9" ry="15" transform="rotate(72 50 42)"/><ellipse cx="50" cy="26" rx="9" ry="15" transform="rotate(144 50 42)"/><ellipse cx="50" cy="26" rx="9" ry="15" transform="rotate(216 50 42)"/><ellipse cx="50" cy="26" rx="9" ry="15" transform="rotate(288 50 42)"/></g><circle cx="50" cy="42" r="8" fill="#F7E6C4"/></g></svg><img src="https://images.unsplash.com/photo-1692077312112-16e812e6a9a2?fm=jpg&q=75&w=500&auto=format&fit=crop" alt="Pink peonies and roses" loading="lazy" onerror="this.remove()"></div><p>Soft flowers</p></div>
+      <div class="pol"><span class="pin"></span><div class="ph"><svg class="art" viewBox="0 0 100 100"><g stroke="#5B3F73" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"><path d="M38 92c4-14-6-20 2-32" fill="none"/><path d="M64 92c-4-14 6-18-2-30" fill="none"/><ellipse cx="38" cy="34" rx="18" ry="22" fill="#F8D3DB"/><path d="M38 56l-3 5h6z" fill="#F8D3DB"/><ellipse cx="64" cy="40" rx="16" ry="20" fill="#DCCBEF"/><path d="M64 60l-3 5h6z" fill="#DCCBEF"/><path d="M30 24q3-6 9-7" fill="none" stroke="#fff"/></g></svg><img src="https://images.unsplash.com/photo-1751860186520-96f61a6cc975?fm=jpg&q=75&w=500&auto=format&fit=crop" alt="Balloons in soft colors" loading="lazy" onerror="this.remove()"></div><p>Pastel balloons</p></div>
     </div>
     <div class="quote"><span class="tape"></span><p>"Good food, good people, soft lights and lots of cake."</p><small>The plan for the evening</small></div>
   </div>
